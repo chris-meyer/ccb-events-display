@@ -1,0 +1,42 @@
+/*Contains the rest of the content*/
+.container{
+  width: 100%;
+}
+/* Events Title */
+h1{
+  text-align: center;
+  background-color: #336;
+  color: #FFF;
+}
+/* Div that defines the content column layout */
+#coldiv{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.even_item{
+  background-color: #CFCFCF;
+}
+
+.odd_item{
+  background-color: #E6E6E6;
+}
+
+h1,h3,h4{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1{
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
+
+.eventinfo{
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.eventinfo h4.pull-right{
+  padding-top: 0.7em;
+}
