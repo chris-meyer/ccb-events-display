@@ -16,3 +16,7 @@ myApp.config(['$routeProvider', function($routeProvider){
   });
 
 }]);
+
+myApp.constant('FEED_CONFIG', {
+  itemLimit: 10
+});
