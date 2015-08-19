@@ -26,4 +26,9 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
 function swapItems(){
   //alert("swapItems");
   //console.log("swapitems");
+  //Hide the top item
+  //var topEl = angular.element('.show');
+  //console.log(topEl.length);
+  //Move the top to the bottom
+  //Show the next item
 }
