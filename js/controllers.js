@@ -6,7 +6,7 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-eventControllers.controller("ListController", ['$scope','$http','FEED_CONFIG', function ($scope, $http, FEED_CONFIG){
+eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
   //The http service allows for the reading of our json file
   $http.get('js/data.json').success(function(data){
 
@@ -18,5 +18,12 @@ eventControllers.controller("ListController", ['$scope','$http','FEED_CONFIG', f
     //Get limit from the config
     $scope.eventLimit = FEED_CONFIG.itemLimit;
 
+    $interval(swapItems, FEED_CONFIG.swapFrequency);
+
   });
 }]);
+
+function swapItems(){
+  //alert("swapItems");
+  //console.log("swapitems");
+}
