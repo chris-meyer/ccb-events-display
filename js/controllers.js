@@ -7,14 +7,14 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (Array) List of name-protected fields to pass, including constructor
 */
 eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
-  //The http service allows for the reading of our json file
-  $http.get('js/data.json').success(function(data){
-
-
+  //The http service allows for the reading the json returned by CCB
+  $http.get('php/gs.php').success(function(data){
+    var jRes = data.response;
+    //console.log(JSON.stringify(jRes));
     //In this case, $scope carries the data to use in the App
-    $scope.events = data;
+    $scope.events = jRes.items.item;
     //Set default sort field to name
-    $scope.eventOrder = 'title';
+    $scope.eventOrder = 'event_name';
     //Get limit from the config
     $scope.eventLimit = FEED_CONFIG.itemLimit;
 
@@ -24,7 +24,6 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
 }]);
 
 function swapItems(){
-  //alert("swapItems");
   //console.log("swapitems");
   //Hide the top item
   //var topEl = angular.element('.show');

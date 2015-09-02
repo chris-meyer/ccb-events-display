@@ -90,9 +90,14 @@ class ccb {
 	public function get_valid_individuals() {
 		return $this->get('valid_individuals');
 	}
-	public function get_public_calendar_listing($date_start = NULL) {
+	public function get_public_calendar_listing($date_start = NULL,$date_end = NULL) {
 		$start = $date_start == NULL ? date("Y-m-d") : $date_start;
-		return $this->get('public_calendar_listing', array('date_start'=>$start));
+		$end = $date_end;
+		$params = array('date_start'=>$start);
+		if($end){
+				$params['date_end']=$end;
+		}
+		return $this->get('public_calendar_listing', $params);
 	}
 }
 ?>
