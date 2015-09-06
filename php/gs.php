@@ -1,13 +1,14 @@
 <?php
+date_default_timezone_set('America/Chicago');
 require "CCB.php";
 
 $ccb = new ccb("**churchname**", "**username**", "**password**");
 $ccb->format('JSON');
 
-//One week ago
-$startD = date("Y-m-d",time() + (60 * 60 * 24 * -7));
 //Today
-$endD = date("Y-m-d");
+$startD = date("Y-m-d");
+//One week ahead
+$endD = date("Y-m-d",strtotime("+1 week"));
 
 echo $ccb->get_public_calendar_listing($startD,$endD);
 
