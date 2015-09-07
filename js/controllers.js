@@ -76,15 +76,31 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     $scope.eventLimit = FEED_CONFIG.itemLimit;
 
     $interval(swapItems, FEED_CONFIG.swapFrequency);
-
+    //setTimeout(swapItems,5000);
   });
 }]);
 
 function swapItems(){
   //console.log("swapitems");
-  //Hide the top item
+  //Get the event container
+  var eventContainer = angular.element(document.querySelector('.eventlist'));
+  //console.log('eventContainer length: '+eventContainer.length);
+  //console.log('eventContainer CLASS: '+eventContainer.attr("class"));
+  //Get the first item
   //var topEl = angular.element('.show');
-  //console.log(topEl.length);
+  var topEl = angular.element(document.querySelector('.show'));
+  //console.log('topEl length: '+topEl.length);
+  //console.log('topEl ID: '+topEl.attr("id"));
   //Move the top to the bottom
-  //Show the next item
+  //Add css transition here
+  topEl.removeClass("show");
+  topEl.addClass("hidden");
+  //eventContainer.remove(angular.element(document.querySelector("#"+topEl.attr("id"))));
+  eventContainer.append(topEl);
+  // //Show the next item
+  var hidEl = angular.element(document.querySelector('.hidden'));
+  //console.log('hidEl length: '+hidEl.length);
+  //console.log('hidEl ID: '+hidEl.attr("id"));
+  hidEl.removeClass("hidden");
+  hidEl.addClass("show");
 }
