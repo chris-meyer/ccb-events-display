@@ -18,6 +18,6 @@ myApp.config(['$routeProvider', function($routeProvider){
 }]);
 
 myApp.constant('FEED_CONFIG', {
-  itemLimit: 10, //10 items are shown at a time
+  itemLimit: 5, //5 items are shown at a time
   swapFrequency: 5000 //every 5 seconds
 });

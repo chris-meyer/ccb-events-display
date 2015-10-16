@@ -53,7 +53,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       //Set the date format now that the time has been formatted
       curItem.date = displayDate;
 
-    }
+    }//end for
 
     $scope.events = resItems;
     //Set default sort field to name
@@ -61,13 +61,15 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     //Get limit from the config
     $scope.eventLimit = FEED_CONFIG.itemLimit;
 
-    //$interval(swapItems, FEED_CONFIG.swapFrequency);
+    if(resItems.length > FEED_CONFIG.itemLimit){
+      //Rotate the items if any need to be hidden
+      $interval(swapItems, FEED_CONFIG.swapFrequency);
+    }
     //setTimeout(swapItems,5000);
   });
 }]);
 
 function swapItems(){
-  //console.log("swapitems");
   //Get the event container
   var eventContainer = angular.element(document.querySelector('.eventlist'));
   //console.log('eventContainer length: '+eventContainer.length);
@@ -79,6 +81,7 @@ function swapItems(){
   //console.log('topEl ID: '+topEl.attr("id"));
   //Move the top to the bottom
   //Add css transition here
+
   topEl.removeClass("show");
   topEl.addClass("hidden");
   //eventContainer.remove(angular.element(document.querySelector("#"+topEl.attr("id"))));
@@ -89,6 +92,7 @@ function swapItems(){
   //console.log('hidEl ID: '+hidEl.attr("id"));
   hidEl.removeClass("hidden");
   hidEl.addClass("show");
+  //console.log('hideEl shown');
 }
 /*
 * Lifted from http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
