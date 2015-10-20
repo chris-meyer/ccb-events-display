@@ -10,14 +10,35 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
   //The http service allows for the reading the json returned by CCB
   $http.get('php/gs.php').success(function(data){
     var jRes = data.response;
-    //console.log(JSON.stringify(jRes));
+
     //In this case, $scope carries the data to use in the App
-    //$scope.events = jRes.items.item;
     var resItems = jRes.items.item;
     //Loop through the items for formatting
     var curItem;
+
+
+    $scope.itemToggle = {};
+    //A "toggle list" of the item ids and whether they should be shown
+    $scope.itemToggle.itemTL = [];
+    //The beginning of the list to show
+    $scope.itemToggle.firstShown = 0;
+    //The end of the list to show
+    $scope.itemToggle.lastShown = (FEED_CONFIG.itemLimit - 1);
+    //Number of items
+    $scope.itemToggle.itemCnt = resItems.length;
+
     for(var r=0; r<resItems.length; r++){
       curItem = resItems[r];
+
+      //Should this item be shown?
+      if(r < FEED_CONFIG.itemLimit){
+        //$scope.itemTL.push([r,true]);
+        $scope.itemToggle.itemTL.push(true);
+      }else{
+        //$scope.itemTL.push([r,false]);
+        $scope.itemToggle.itemTL.push(false);
+      }
+
       //If a location is not set then it's an empty array
       if(typeof curItem.location !== "string"){
         curItem.location = "Not Available"
@@ -25,7 +46,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
 
       //Format the date and time
       var eventDate;
-      console.log("date and time for " + curItem.event_name+ " before format: "+curItem.date + " " + curItem.start_time + " - " + curItem.end_time);
+      //console.log("date and time for " + curItem.event_name+ " before format: "+curItem.date + " " + curItem.start_time + " - " + curItem.end_time);
       //First format the date for display
       var displayDate = curItem.date.split('-');
       displayDate = new Date(parseInt(displayDate[0],10),parseInt(displayDate[1],10)-1,parseInt(displayDate[2],10));
@@ -33,11 +54,11 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
 
       //Now format the start time and end time
       if(curItem.start_time == "00:00:00"){
-        console.log("start time NOT set");
+        //console.log("start time NOT set");
         curItem.start_time = "?";
       }
       else{
-        console.log("start time IS set");
+        //console.log("start time IS set");
         //Show the date and time as MM/DD HH:MM AM/PM
         eventDate = new Date(curItem.date + 'T' + curItem.start_time+"-0500");
         curItem.start_time = formatAMPM(eventDate);
@@ -61,39 +82,49 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     //Get limit from the config
     $scope.eventLimit = FEED_CONFIG.itemLimit;
 
+    $scope.inRange = function(value){
+      //console.log("inRange " + value);
+      if($scope.itemToggle.itemTL[value] === true){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    //Changes the flags in the toggle list
+    $scope.swapItems = function(itemT){
+      //console.log(itemT);
+
+      //Hide the first in the list before moving the pointer
+      itemT.itemTL[itemT.firstShown] = false;
+
+      if(itemT.firstShown == (itemT.itemCnt - 1)){
+        //Move the "start" index to the beginning
+        itemT.firstShown = 0;
+      }else{
+        //Move the "start" index ahead one
+        itemT.firstShown++;
+      }
+
+      //Get the index of the last shown item
+      if(itemT.lastShown == (itemT.itemCnt - 1)){
+        //Move the "end" index to the beginning
+        itemT.lastShown = 0;
+      }else{
+        //Move the "end" index ahead one
+        itemT.lastShown++;
+      }
+      //Show the next in the list
+      itemT.itemTL[itemT.lastShown] = true;
+
+    }
+
     if(resItems.length > FEED_CONFIG.itemLimit){
       //Rotate the items if any need to be hidden
-      $interval(swapItems, FEED_CONFIG.swapFrequency);
+      $interval( function(){ $scope.swapItems($scope.itemToggle); }, FEED_CONFIG.swapFrequency);
     }
-    //setTimeout(swapItems,5000);
   });
 }]);
 
-function swapItems(){
-  //Get the event container
-  var eventContainer = angular.element(document.querySelector('.eventlist'));
-  //console.log('eventContainer length: '+eventContainer.length);
-  //console.log('eventContainer CLASS: '+eventContainer.attr("class"));
-  //Get the first item
-  //var topEl = angular.element('.show');
-  var topEl = angular.element(document.querySelector('.show'));
-  //console.log('topEl length: '+topEl.length);
-  //console.log('topEl ID: '+topEl.attr("id"));
-  //Move the top to the bottom
-  //Add css transition here
-
-  topEl.removeClass("show");
-  topEl.addClass("hidden");
-  //eventContainer.remove(angular.element(document.querySelector("#"+topEl.attr("id"))));
-  eventContainer.append(topEl);
-  // //Show the next item
-  var hidEl = angular.element(document.querySelector('.hidden'));
-  //console.log('hidEl length: '+hidEl.length);
-  //console.log('hidEl ID: '+hidEl.attr("id"));
-  hidEl.removeClass("hidden");
-  hidEl.addClass("show");
-  //console.log('hideEl shown');
-}
 /*
 * Lifted from http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
 */
