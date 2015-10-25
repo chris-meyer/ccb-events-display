@@ -83,16 +83,20 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     $scope.eventLimit = FEED_CONFIG.itemLimit;
 
     $scope.inRange = function(value){
-      //console.log("inRange " + value);
+      $inRange = false;
       if($scope.itemToggle.itemTL[value] === true){
-        return true;
-      }else{
-        return false;
+        $inRange = true;
       }
+
+      return $inRange;
+
     }
+
     //Changes the flags in the toggle list
     $scope.swapItems = function(itemT){
       //console.log(itemT);
+      //Save the index of the item to move to the end
+      var indToMove = itemT.firstShown;
 
       //Hide the first in the list before moving the pointer
       itemT.itemTL[itemT.firstShown] = false;
@@ -116,6 +120,9 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       //Show the next in the list
       itemT.itemTL[itemT.lastShown] = true;
 
+      //Move the hidden item
+      moveItem(indToMove);
+
     }
 
     if(resItems.length > FEED_CONFIG.itemLimit){
@@ -124,6 +131,17 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     }
   });
 }]);
+
+function moveItem(ind){
+  //Get the DOM obj for the event container
+  var eventContainer = angular.element(document.querySelector('.eventlist'));
+
+  //Get the DOM obj for the item to move
+  var moveEL = angular.element(document.querySelector('#event-'+ind)).detach();
+
+  //Append it to the end of the container
+  eventContainer.append(moveEL);
+}
 
 /*
 * Lifted from http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
