@@ -87,9 +87,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       if($scope.itemToggle.itemTL[value] === true){
         $inRange = true;
       }
-
       return $inRange;
-
     }
 
     //Changes the flags in the toggle list
@@ -121,13 +119,16 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       itemT.itemTL[itemT.lastShown] = true;
 
       //Move the hidden item
-      moveItem(indToMove);
-
+      return indToMove;
     }
 
+    var iTMove = 0;
     if(resItems.length > FEED_CONFIG.itemLimit){
       //Rotate the items if any need to be hidden
-      $interval( function(){ $scope.swapItems($scope.itemToggle); }, FEED_CONFIG.swapFrequency);
+      $interval( function(){
+        iTMove = $scope.swapItems($scope.itemToggle);
+        setTimeout(function(){moveItem(iTMove);},3000);
+      }, FEED_CONFIG.swapFrequency);
     }
   });
 }]);

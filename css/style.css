@@ -1,3 +1,9 @@
+*{
+  /*font-family: Geneva, Tahoma, Verdana, sans-serif;*/
+  /*font-family: Verdana, Geneva, sans-serif;*/
+  font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+}
+
 /*Contains the rest of the content*/
 .container{
   width: 100%;
@@ -41,14 +47,21 @@ h1{
   padding-top: 0.7em;
 }
 
-.event{
-   transition: opacity .5s ease-in-out;
-   -moz-transition: opacity .5s ease-in-out;
-   -webkit-transition: opacity .5s ease-in-out;
+/* Transitions for showing/hiding items */
+.event.ng-hide-add, .event.ng-hide-remove {
+  -webkit-transition:all ease-in-out 1s;
+  -moz-transition:all ease-in-out 1s;
+  -o-transition:all ease-in-out 1s;
+  transition:all ease-in-out 1s;
+  display:block!important;
 }
-
-/* when hiding the event */
-.ng-hide-add         { opacity: 1; }
-
-/* when showing the picture */
-.ng-hide-remove      { opacity: 0; }
+/* Settings for an item being hidden */
+.event.ng-hide-add.ng-hide-add-active,
+.event.ng-hide-remove {
+  opacity:0;
+}
+/* Settings for a hidden item being shown*/
+.event.ng-hide-add,
+.event.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
