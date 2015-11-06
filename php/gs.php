@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/Chicago');
 require "CCB.php";
-
+//TODO: Put this in a config file
 $ccb = new ccb("**churchname**", "**username**", "**password**");
 $ccb->format('JSON');
 

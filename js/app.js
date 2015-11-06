@@ -11,6 +11,10 @@ myApp.config(['$routeProvider', function($routeProvider){
     templateUrl: 'partials/list.html',
     controller: 'ListController'
   })
+  .when('/list-with-slides', {
+    templateUrl: 'partials/list-with-slides.html',
+    controller: 'ListController'
+  })
   .otherwise({
     redirectTo: '/list' //Go to list route by default
   });
@@ -18,6 +22,7 @@ myApp.config(['$routeProvider', function($routeProvider){
 }]);
 
 //Config settings for the app
+//TODO: Put this in a config file
 myApp.constant('FEED_CONFIG', {
   itemLimit: 5, //5 items are shown at a time
   swapFrequency: 5000 //every 5 seconds

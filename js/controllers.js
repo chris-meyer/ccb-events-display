@@ -130,7 +130,31 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
         setTimeout(function(){moveItem(iTMove);},3000);
       }, FEED_CONFIG.swapFrequency);
     }
-  });
+  }); //END HTTP FOR CCB EVENTS
+
+
+  //Slider logic
+  $http.get('php/findimages.php').success(function(data){
+      var imgRes = data;
+
+      $scope.annList = imgRes;
+      $scope.annIndx = 0;
+      $scope.annSrc = imgRes[0];
+
+      if(imgRes.length > 1){
+       $interval( function(){
+         //Move the image index
+         $scope.annIndx++;
+         if($scope.annIndx == $scope.annList.length){
+           $scope.annIndx = 0;
+         }
+         //Change the img src
+         $scope.annSrc = $scope.annList[$scope.annIndx];
+       },2000); //TODO: Make this a config option
+      }
+
+  }); //END HTTP FOR IMAGES
+
 }]);
 
 function moveItem(ind){
