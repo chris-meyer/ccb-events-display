@@ -82,6 +82,8 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     //Get limit from the config
     $scope.eventLimit = FEED_CONFIG.itemLimit;
 
+    $scope.slideHeadImg = FEED_CONFIG.slideHeadImg;
+
     $scope.inRange = function(value){
       $inRange = false;
       if($scope.itemToggle.itemTL[value] === true){
@@ -150,7 +152,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
          }
          //Change the img src
          $scope.annSrc = $scope.annList[$scope.annIndx];
-       },2000); //TODO: Make this a config option
+       },FEED_CONFIG.slideFrequency); //TODO: Make this a config option
       }
 
   }); //END HTTP FOR IMAGES

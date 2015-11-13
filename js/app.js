@@ -25,5 +25,7 @@ myApp.config(['$routeProvider', function($routeProvider){
 //TODO: Put this in a config file
 myApp.constant('FEED_CONFIG', {
   itemLimit: 5, //5 items are shown at a time
-  swapFrequency: 5000 //every 5 seconds
+  swapFrequency: 5000, //every 5 seconds
+  slideFrequency: 3000,
+  slideHeadImg: 'http://goodshep.com/wp-content/themes/rayoflight/images/header-wrapper-bg.gif'
 });

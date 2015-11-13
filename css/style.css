@@ -4,20 +4,23 @@
   font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
 }
 
+body{
+  background-color: #336;
+}
+
 /*Contains the rest of the content*/
 .container{
   width: 100%;
 }
+
 /* Events Title */
 h1{
   text-align: center;
-  background-color: #336;
   color: #FFF;
 }
-/* Div that defines the content column layout */
-#coldiv{
-  padding-left: 0;
-  padding-right: 0;
+
+.nopad{
+  padding: 0;
 }
 
 .even_item{
@@ -64,4 +67,12 @@ h1{
 .event.ng-hide-add,
 .event.ng-hide-remove.ng-hide-remove-active {
   opacity:1;
+}
+
+img#announcement{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
