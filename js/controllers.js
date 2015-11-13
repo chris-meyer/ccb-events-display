@@ -50,7 +50,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       //First format the date for display
       var displayDate = curItem.date.split('-');
       displayDate = new Date(parseInt(displayDate[0],10),parseInt(displayDate[1],10)-1,parseInt(displayDate[2],10));
-      displayDate = ((displayDate.getMonth()+1) + "/" + displayDate.getDate());
+      displayDate = FEED_CONFIG.daysOfWeek[displayDate.getDay()] + " " + ((displayDate.getMonth()+1) + "/" + displayDate.getDate());
 
       //Now format the start time and end time
       if(curItem.start_time == "00:00:00"){

@@ -24,6 +24,7 @@ myApp.config(['$routeProvider', function($routeProvider){
 //Config settings for the app
 //TODO: Put this in a config file
 myApp.constant('FEED_CONFIG', {
+  daysOfWeek: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
   itemLimit: 5, //5 items are shown at a time
   swapFrequency: 5000, //every 5 seconds
   slideFrequency: 3000,
