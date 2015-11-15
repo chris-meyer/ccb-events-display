@@ -48,6 +48,7 @@ h1{
 
 .eventinfo h4.pull-right{
   padding-top: 0.7em;
+  text-align: right;
 }
 
 /* Transitions for showing/hiding items */
