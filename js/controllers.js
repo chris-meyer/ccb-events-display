@@ -94,7 +94,6 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
 
     //Changes the flags in the toggle list
     $scope.swapItems = function(itemT){
-      //console.log(itemT);
       //Save the index of the item to move to the end
       var indToMove = itemT.firstShown;
 
@@ -138,23 +137,27 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
   //Slider logic
   $http.get('php/findimages.php').success(function(data){
       var imgRes = data;
-
-      $scope.annList = imgRes;
       $scope.annIndx = 0;
-      $scope.annSrc = imgRes[0];
+      $scope.annList = imgRes;
 
       if(imgRes.length > 1){
        $interval( function(){
          //Move the image index
          $scope.annIndx++;
+
          if($scope.annIndx == $scope.annList.length){
            $scope.annIndx = 0;
          }
-         //Change the img src
-         $scope.annSrc = $scope.annList[$scope.annIndx];
-       },FEED_CONFIG.slideFrequency); //TODO: Make this a config option
-      }
 
+       },FEED_CONFIG.slideFrequency);
+      }
+      //Checks for current announcement slider
+      $scope.isCurAnn = function(value){
+        if($scope.annIndx == value){
+          return true;
+        }
+        return false;
+      }
   }); //END HTTP FOR IMAGES
 
 }]);
