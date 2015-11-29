@@ -7,8 +7,7 @@ $annList = array();
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-            //echo "filename: $file : filetype: " . filetype($dir . $file) . "\n";
-            if(filetype($dir . $file) == 'file'){
+            if(filetype($dir . $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/",$file) != FALSE) ){
               $annList[] = ($dir2 . $file);
             }
         }
