@@ -83,7 +83,7 @@ img.announcement{
 */
 
 /* Transitions for showing/hiding items */
-img.announcement.ng-hide-add, img.announcement.ng-hide-remove {
+img.announcement.ng-hide-remove {
   -webkit-transition:all ease-out 1s;
   -moz-transition:all ease-out 1s;
   -o-transition:all ease-out 1s;
@@ -93,9 +93,11 @@ img.announcement.ng-hide-add, img.announcement.ng-hide-remove {
 img.announcement.ng-hide-add.ng-hide-add-active,
 img.announcement.ng-hide-remove {
   margin-left: -100%;
+  opacity: 0;
 }
 /* Settings for a hidden item being shown*/
 img.announcement.ng-hide-add,
 img.announcement.ng-hide-remove.ng-hide-remove-active {
   margin-left: 0;
+  opacity: 1;
 }

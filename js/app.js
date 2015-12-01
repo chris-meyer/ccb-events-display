@@ -25,8 +25,8 @@ myApp.config(['$routeProvider', function($routeProvider){
 //TODO: Put this in a config file
 myApp.constant('FEED_CONFIG', {
   daysOfWeek: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-  itemLimit: 5, //5 items are shown at a time
-  swapFrequency: 5000, //every 5 seconds
+  itemLimit: 4, //4 items are shown at a time
+  swapFrequency: 4000, //every 4 seconds
   slideFrequency: 3000,
   slideHeadImg: 'http://goodshep.com/wp-content/themes/rayoflight/images/header-wrapper-bg.gif'
 });
