@@ -28,5 +28,6 @@ myApp.constant('FEED_CONFIG', {
   itemLimit: 4, //4 items are shown at a time
   swapFrequency: 4000, //every 4 seconds
   slideFrequency: 3000,
+  pageRefreshFrequency: 7.2e+6, //every 2 hours
   slideHeadImg: 'http://goodshep.com/wp-content/themes/rayoflight/images/header-wrapper-bg.gif'
 });

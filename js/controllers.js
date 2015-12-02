@@ -160,6 +160,11 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       }
   }); //END HTTP FOR IMAGES
 
+  //Timeout to refresh the page to get new data
+  setTimeout(function(){
+    window.location.reload();
+  },FEED_CONFIG.pageRefreshFrequency);
+
 }]);
 
 function moveItem(ind){
