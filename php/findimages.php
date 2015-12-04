@@ -11,6 +11,7 @@ if (is_dir($dir)) {
               $annList[] = ($dir2 . $file);
             }
         }
+        sort($annList);
         closedir($dh);
     }
 }
