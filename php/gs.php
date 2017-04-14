@@ -1,8 +1,10 @@
 <?php
 date_default_timezone_set('America/Chicago');
 require "CCB.php";
-//TODO: Put this in a config file
-$ccb = new ccb("**churchname**", "**username**", "**password**");
+
+$ccbConf = parse_ini_file(realpath(__DIR__.'/../ccb-events.conf'));
+
+$ccb = new ccb($ccbConf['ccb_church'], $ccbConf['ccb_user'], $ccbConf['ccb_pass']);
 $ccb->format('JSON');
 
 //Today
