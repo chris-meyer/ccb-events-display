@@ -3,25 +3,8 @@ var myApp = angular.module('myApp',[
   'eventControllers'
 ])
 
-//Calls routeProvider service
-myApp.config(['$routeProvider', function($routeProvider){
-  //When the /list route is called, include the list.html partial
-  $routeProvider
-  .when('/list', {
-    templateUrl: 'partials/list.html',
-    controller: 'ListController'
-  })
-  .when('/list-with-slides', {
-    templateUrl: 'partials/list-with-slides.html',
-    controller: 'ListController'
-  })
-  .otherwise({
-    redirectTo: '/list' //Go to list route by default
-  });
+//let FEED_CONFIG;
 
-}]);
-
-angular.element(document).ready(function () {
 
   $.get('ccb-events.conf', function (data) {
 
@@ -43,7 +26,7 @@ angular.element(document).ready(function () {
       c[m[1]] = m[2];
 
     } //endwhile
-    
+
     let d = {
       daysOfWeek: c['daysOfWeek'].split(','),
       itemLimit: parseInt(c['itemLimit']), //4 items are shown at a time
@@ -53,9 +36,37 @@ angular.element(document).ready(function () {
       slideHeadImg: c['slideHeadImg']
     };
     console.log(d);
-    angular.module('myApp').constant('FEED_CONFIG', d);
+    //angular.module('myApp').constant('FEED_CONFIG', d);
+    myApp.constant('FEED_CONFIG', d);
+
+    //angular.module('myApp.config',[]).constant('FEED_CONFIG', d);
+    console.log('set FEED_CONFIG');
    });
-});
+
+
+
+//Calls routeProvider service
+myApp.config(['$routeProvider', function($routeProvider){
+  //When the /list route is called, include the list.html partial
+  $routeProvider
+  .when('/list', {
+    templateUrl: 'partials/list.html',
+    controller: 'ListController'
+  })
+  .when('/list-with-slides', {
+    templateUrl: 'partials/list-with-slides.html',
+    controller: 'ListController'
+  })
+  .otherwise({
+    redirectTo: '/list' //Go to list route by default
+  });
+
+}]);
+
+//angular.element(document).ready(function () {
+
+
+//});
 
 //Config settings for the app
 //TODO: Put this in a config file

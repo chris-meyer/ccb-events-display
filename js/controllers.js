@@ -1,5 +1,6 @@
 //Angular var that Sets Namespace for the App
 var eventControllers = angular.module("eventControllers", ['ngAnimate']);
+//var eventControllers = angular.module("eventControllers", ['ngAnimate','myApp.config']);
 
 /**
 * Controller to handle displaying the event list
@@ -7,6 +8,13 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (Array) List of name-protected fields to pass, including constructor
 */
 eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
+//eventControllers.controller("ListController", ['$scope','$http','$interval', function ($scope, $http, $interval){
+//eventControllers.controller("ListController", ['confService','$scope','$http','$interval', function (confService, $scope, $http, $interval){
+  // console.log('eventControllers: FEED_CONFIG');
+   console.log(FEED_CONFIG);
+
+//console.log(confService);
+
   //The http service allows for the reading the json returned by CCB
   $http.get('php/gs.php').success(function(data){
     var jRes = data.response;
