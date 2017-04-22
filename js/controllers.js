@@ -1,26 +1,20 @@
 //Angular var that Sets Namespace for the App
 var eventControllers = angular.module("eventControllers", ['ngAnimate']);
-//var eventControllers = angular.module("eventControllers", ['ngAnimate','myApp.config']);
 
 /**
 * Controller to handle displaying the event list
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-//eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
 eventControllers.controller("ListController", ['$scope','$http','$interval','feedConfigService', function ($scope, $http, $interval, feedConfigService){
-//eventControllers.controller("ListController", ['confService','$scope','$http','$interval', function (confService, $scope, $http, $interval){
-  // console.log('eventControllers: FEED_CONFIG');
+  //$http.get returns a Promise, so we can use then to determine what to do next
    feedConfigService.getConfig().then(function(cdata) {
-     console.log('getConfig result');
-     console.log(cdata);
-   });
+    //  console.log('getConfig result');
+    //  console.log(cdata);
 
- // var test = feedConfigService.getConfig();
- // console.log(test);
-
-
-//console.log(confService);
+     let FEED_CONFIG = feedConfigService.parseConfig(cdata);
+    //  console.log('parseConfig result');
+    //  console.log(FEED_CONFIG);
 
   //The http service allows for the reading the json returned by CCB
   $http.get('php/gs.php').success(function(data){
@@ -179,6 +173,8 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','fee
   setTimeout(function(){
     window.location.reload();
   },FEED_CONFIG.pageRefreshFrequency);
+
+}); //END feedConfigService Call
 
 }]);
 

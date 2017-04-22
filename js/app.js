@@ -1,17 +1,16 @@
 var myApp = angular.module('myApp',[
   'ngRoute',
-  'eventControllers',
-
+  'eventControllers'
 ])
 
-//myApp.factory('feedConfig', function feedConfigFactory() {
 myApp.service('feedConfigService', function ($http) {
 
   this.getConfig = function () {
+    //TODO: This is bad. Use a server-side script to get this data
+    return $.get('ccb-events.conf');
+  }
 
-  //this.getConfig = $.get('ccb-events.conf', function (data) {
-  return $.get('ccb-events.conf', function (data) {
-
+  this.parseConfig = function(data) {
     //Regex to parse out the values
     const regex = /([a-z_]+)\s*=\s*"?([\w\d:_!@#$%^&*()\[\]{},.+\/-]+)"?/gi;
     let m;
@@ -39,22 +38,11 @@ myApp.service('feedConfigService', function ($http) {
       pageRefreshFrequency: parseFloat(c['pageRefreshFrequency']), //every 2 hours
       slideHeadImg: c['slideHeadImg']
     };
-    console.log(d);
-    //angular.module('myApp').constant('FEED_CONFIG', d);
-    //myApp.constant('FEED_CONFIG', d);
 
     return d;
-    //angular.module('myApp.config',[]).constant('FEED_CONFIG', d);
-
-   });
   }
+
 });
-
-//let FEED_CONFIG;
-
-
-
-
 
 
 //Calls routeProvider service
@@ -74,19 +62,3 @@ myApp.config(['$routeProvider', function($routeProvider){
   });
 
 }]);
-
-//angular.element(document).ready(function () {
-
-
-//});
-
-//Config settings for the app
-//TODO: Put this in a config file
-// myApp.constant('FEED_CONFIG', {
-//   daysOfWeek: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-//   itemLimit: 4, //4 items are shown at a time
-//   swapFrequency: 4000, //every 4 seconds
-//   slideFrequency: 3000,
-//   pageRefreshFrequency: 7.2e+6, //every 2 hours
-//   slideHeadImg: 'http://goodshep.com/wp-content/themes/rayoflight/images/header-wrapper-bg.gif'
-// });
