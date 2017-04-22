@@ -7,11 +7,18 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
-//eventControllers.controller("ListController", ['$scope','$http','$interval', function ($scope, $http, $interval){
+//eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
+eventControllers.controller("ListController", ['$scope','$http','$interval','feedConfigService', function ($scope, $http, $interval, feedConfigService){
 //eventControllers.controller("ListController", ['confService','$scope','$http','$interval', function (confService, $scope, $http, $interval){
   // console.log('eventControllers: FEED_CONFIG');
-   console.log(FEED_CONFIG);
+   feedConfigService.getConfig().then(function(cdata) {
+     console.log('getConfig result');
+     console.log(cdata);
+   });
+
+ // var test = feedConfigService.getConfig();
+ // console.log(test);
+
 
 //console.log(confService);
 

@@ -1,12 +1,16 @@
 var myApp = angular.module('myApp',[
   'ngRoute',
-  'eventControllers'
+  'eventControllers',
+
 ])
 
-//let FEED_CONFIG;
+//myApp.factory('feedConfig', function feedConfigFactory() {
+myApp.service('feedConfigService', function ($http) {
 
+  this.getConfig = function () {
 
-  $.get('ccb-events.conf', function (data) {
+  //this.getConfig = $.get('ccb-events.conf', function (data) {
+  return $.get('ccb-events.conf', function (data) {
 
     //Regex to parse out the values
     const regex = /([a-z_]+)\s*=\s*"?([\w\d:_!@#$%^&*()\[\]{},.+\/-]+)"?/gi;
@@ -37,11 +41,19 @@ var myApp = angular.module('myApp',[
     };
     console.log(d);
     //angular.module('myApp').constant('FEED_CONFIG', d);
-    myApp.constant('FEED_CONFIG', d);
+    //myApp.constant('FEED_CONFIG', d);
 
+    return d;
     //angular.module('myApp.config',[]).constant('FEED_CONFIG', d);
-    console.log('set FEED_CONFIG');
+
    });
+  }
+});
+
+//let FEED_CONFIG;
+
+
+
 
 
 
