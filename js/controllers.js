@@ -6,7 +6,16 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
+eventControllers.controller("ListController", ['$scope','$http','$interval','feedConfigService', function ($scope, $http, $interval, feedConfigService){
+  //$http.get returns a Promise, so we can use then to determine what to do next
+   feedConfigService.getConfig().then(function(cdata) {
+    //  console.log('getConfig result');
+    //  console.log(cdata);
+
+     let FEED_CONFIG = feedConfigService.parseConfig(cdata);
+    //  console.log('parseConfig result');
+    //  console.log(FEED_CONFIG);
+
   //The http service allows for the reading the json returned by CCB
   $http.get('php/gs.php').success(function(data){
     var jRes = data.response;
@@ -164,6 +173,8 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
   setTimeout(function(){
     window.location.reload();
   },FEED_CONFIG.pageRefreshFrequency);
+
+}); //END feedConfigService Call
 
 }]);
 
