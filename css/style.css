@@ -5,7 +5,7 @@
 }
 
 body{
-  background-color: #336;
+  background-color: #051644;
 }
 
 /*Contains the rest of the content*/
@@ -39,6 +39,13 @@ h1,h3,h4{
 h1{
   padding-top: 0.8em;
   padding-bottom: 0.8em;
+}
+
+#head-row img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 150px;
 }
 
 .eventinfo{
