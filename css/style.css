@@ -6,6 +6,8 @@
 
 body{
   background-color: #051644;
+  /* fixes scrollbar showing when the events rotate */
+  overflow: hidden;
 }
 
 /*Contains the rest of the content*/
