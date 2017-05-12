@@ -25,6 +25,14 @@ h1{
   padding: 0;
 }
 
+.announcement-container{
+  padding-left: 3.5em;
+}
+
+.event-container{
+  padding-right: 3.5em;
+}
+
 .even_item{
   background-color: #CFCFCF;
 }
