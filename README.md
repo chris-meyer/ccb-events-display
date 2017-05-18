@@ -29,4 +29,6 @@ slide_frequency = 3000
 page_refresh_frequency = 7.2e+6
 ; path to the header image
 slide_head_img = "images/headlogo.png"
+; full path to the folder where the slider images are
+slide_img_path = "C:\some\path\to\images\announcements"
 ```
