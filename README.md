@@ -16,15 +16,15 @@ ccb_user="yourAPIuser"
 ccb_pass="yourAPIpass"
 
 ; How each day of the week should be displayed
-daysOfWeek = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
+days_of_week = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
 ; 4 items are shown at a time
-itemLimit = 4
+item_limit = 4
 ; every 4 seconds to swap items
-swapFrequency = 4000
+swap_frequency = 4000
 ; every 3 seconds to show an announcement
-slideFrequency = 3000
+slide_frequency = 3000
 ; every 2 hours to refresh the page (in milliseconds)
-pageRefreshFrequency = 7.2e+6
+page_refresh_frequency = 7.2e+6
 ; path to the header image
-slideHeadImg = "images/headlogo.png"
+slide_head_img = "images/headlogo.png"
 ```
