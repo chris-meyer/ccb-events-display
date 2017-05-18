@@ -31,12 +31,12 @@ myApp.service('feedConfigService', function ($http) {
     } //endwhile
 
     let d = {
-      daysOfWeek: c['daysOfWeek'].split(','),
-      itemLimit: parseInt(c['itemLimit']), //4 items are shown at a time
-      swapFrequency: parseInt(c['swapFrequency']), //every 4 seconds
-      slideFrequency: parseInt(c['slideFrequency']),
-      pageRefreshFrequency: parseFloat(c['pageRefreshFrequency']), //every 2 hours
-      slideHeadImg: c['slideHeadImg']
+      days_of_week: c['days_of_week'].split(','),
+      item_limit: parseInt(c['item_limit']), //4 items are shown at a time
+      swap_frequency: parseInt(c['swap_frequency']), //every 4 seconds
+      slide_frequency: parseInt(c['slide_frequency']),
+      page_refresh_frequency: parseFloat(c['page_refresh_frequency']), //every 2 hours
+      slide_head_img: c['slide_head_img']
     };
 
     return d;
