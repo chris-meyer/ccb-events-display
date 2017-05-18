@@ -81,7 +81,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','fee
         curItem.end_time = formatAMPM(eventDate);
       }
       //Set the date format now that the time has been formatted
-      curItem.date = displayDate;
+      curItem.display_date = displayDate;
 
     }//end for
 
