@@ -15,7 +15,9 @@ ccb_church="yourchurch"
 ccb_user="yourAPIuser"
 ccb_pass="yourAPIpass"
 
-; How each day of the week should be displayed
+; look ahead X days from today to pull events
+days_ahead = 14
+; how each day of the week should be displayed
 days_of_week = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
 ; 4 items are shown at a time
 item_limit = 4
