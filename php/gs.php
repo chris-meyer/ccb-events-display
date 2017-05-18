@@ -9,8 +9,8 @@ $ccb->format('JSON');
 
 //Today
 $startD = date("Y-m-d");
-//One week ahead
-$endD = date("Y-m-d",strtotime("+1 week"));
+//Look X days ahead
+$endD = date("Y-m-d",strtotime("+".$ccbConf['days_ahead']." days"));
 
 echo $ccb->get_public_calendar_listing($startD,$endD);
 
