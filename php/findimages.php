@@ -6,7 +6,7 @@ $annList = array();
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-            if(filetype($dir .'\\'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/",$file) != FALSE) ){
+            if(filetype($dir .'\\'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/i",$file) != FALSE) ){
               //Set the image link for this file
               $annList[] = ('/gs-ccb-events/images/' . $file);
             }
