@@ -7,6 +7,9 @@ $dir = realpath($ccbConf['slide_img_path']);
 $imgBase = $_SERVER['REQUEST_URI'];
 $imgBase = substr($imgBase,0,strpos($imgBase,'/php/findimages'));
 
+//The full system path to the web-accessible images
+$annImgPath = realpath(__DIR__.'../images/announcements');
+
 /*
  * This should work ???
  */
@@ -20,6 +23,11 @@ if (is_dir($dir)) {
         while (($file = readdir($dh)) !== false) {
             if(filetype($dir .'\\'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/",$file) != FALSE) ){
               //Set the image link for this file
+              //Check if that image exists in the web announcements folder
+              if(!file_exists($annImgPath.'/'.$file)){
+                //Copy the file into the announcements folder
+                //copy();
+              }
               //TODO: How to determine images/announcements programmatically?
               $annList[] = ($imgBase.'/images/announcements/'.$file);
             }
