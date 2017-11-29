@@ -30,5 +30,9 @@ page_refresh_frequency = 7.2e+6
 ; path to the header image
 slide_head_img = "images/headlogo.png"
 ; full path to the folder where the slider images are
-slide_img_path = "C:\some\path\to\images\announcements"
+slide_img_path = "C:\some\path\to\slide\images"
 ```
+
+### Slider images
+Slider images can be png, jpeg, jpg or gif.  
+They can sit anywhere on the system. They will be copied into `images/announcements` as long as the conf setting `slide_img_path` is the absolute path to the folder where the slide images are.  
