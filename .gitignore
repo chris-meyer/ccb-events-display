@@ -1,2 +1,4 @@
 # Ignore the .conf file for this app
 *.conf
+# Ignore announcements copied into the image folder
+images/announcements/*

@@ -1,19 +1,27 @@
 <?php
-$dir = realpath(__DIR__."/../images/slides");
+$ccbConf = parse_ini_file(realpath(__DIR__.'/../ccb-events.conf'));
 
+$dir = realpath($ccbConf['slide_img_path']);
+
+//The full system path to the web-accessible images
+$annImgPath = realpath(__DIR__.'/../images/announcements');
+//The list of image paths used for the img src
 $annList = array();
 // Open a known directory, and proceed to read its contents
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-            if(filetype($dir .'\\'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/i",$file) != FALSE) ){
-              //Set the image link for this file
-              $annList[] = ('/gs-ccb-events/images/slides/' . $file);
+            if(filetype($dir .'/'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/",$file) != FALSE) ){
+              //Check if that image exists in the web announcements folder
+              if(!file_exists($annImgPath.'/'.$file)){
+                //Copy the file into the announcements folder
+                copy( ($dir .'/'. $file), ($annImgPath.'/'.$file) );
+              }
+              //Add the image link for this file to the list
+              $annList[] = ('images/announcements/'.$file);
             }
         }
-        natcasesort($annList);
-        //natcasesort returns key/value pairs, so extract just the values
-        $annList = array_values($annList);
+        sort($annList);
         closedir($dh);
     }
 }
