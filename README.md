@@ -27,7 +27,7 @@ swap_frequency = 4000
 slide_frequency = 3000
 ; every 2 hours to refresh the page (in milliseconds)
 page_refresh_frequency = 7.2e+6
-; path to the header image
+; path to the header image, relative to the root of the app
 slide_head_img = "images/headlogo.png"
 ; full path to the folder where the slider images are
 slide_img_path = "C:\some\path\to\slide\images"
