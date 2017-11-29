@@ -11,7 +11,6 @@ $annList = array();
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-
             if(filetype($dir .'/'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/",$file) != FALSE) ){
               //Check if that image exists in the web announcements folder
               if(!file_exists($annImgPath.'/'.$file)){
