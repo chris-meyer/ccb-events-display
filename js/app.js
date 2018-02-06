@@ -57,6 +57,10 @@ myApp.config(['$routeProvider', function($routeProvider){
     templateUrl: 'partials/list-with-slides.html',
     controller: 'ListController'
   })
+  .when('/conf', {
+    templateUrl: 'partials/conf.html',
+    controller: 'ConfController'
+  })
   .otherwise({
     redirectTo: '/list' //Go to list route by default
   });
