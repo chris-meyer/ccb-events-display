@@ -7,7 +7,7 @@
 body{
   background-color: #051f60;
   /* fixes scrollbar showing when the events rotate */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /*Contains the rest of the content*/
@@ -116,4 +116,11 @@ img.announcement.ng-hide-add,
 img.announcement.ng-hide-remove.ng-hide-remove-active {
   margin-left: 0;
   opacity: 1;
+}
+
+/*
+* Configuration Form Styles
+*/
+form label{
+  color: white;
 }
