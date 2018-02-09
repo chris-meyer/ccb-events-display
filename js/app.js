@@ -32,6 +32,9 @@ myApp.service('feedConfigService', function ($http) {
     } //endwhile
 
     let d = {
+      ccb_church: c['ccb_church'],
+      ccb_user: c['ccb_user'],
+      ccb_pass: c['ccb_pass'],
       days_ahead: parseInt(c['days_ahead']), //4 items are shown at a time
       days_of_week: c['days_of_week'].split(','),
       item_limit: parseInt(c['item_limit']), //4 items are shown at a time
