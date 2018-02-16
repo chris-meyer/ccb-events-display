@@ -31,6 +31,19 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
       console.log($scope.confSettings);
     });
 
+    // Form submit handler.
+    $scope.submit = function(form) {
+      console.log("Submitted the form!");
+      // Trigger validation flag.
+      $scope.submitted = true;
+
+      // If form is invalid, return and let AngularJS show validation errors.
+      if (form.$invalid) {
+        return;
+      }
+
+    };
+
 
 
 }]);
