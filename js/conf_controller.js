@@ -7,6 +7,8 @@ var confController = angular.module("confController", ['ngAnimate']);
 * @param (Array) List of name-protected fields to pass, including constructor
 */
 confController.controller("ConfController", ['$scope','$http','feedConfigService', function ($scope, $http, feedConfigService){
+  $scope.conf = {};
+
   //Attempt to get the configuration
   feedConfigService.getConfig()
     .success(function(config_data) {
@@ -34,12 +36,17 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
     // Form submit handler.
     $scope.submit = function(form) {
       console.log("Submitted the form!");
+      //Non-empty values will be in $scope.conf.
+      console.log($scope.conf);
       // Trigger validation flag.
       $scope.submitted = true;
 
       // If form is invalid, return and let AngularJS show validation errors.
       if (form.$invalid) {
+        console.log("Form is invalid!");
         return;
+      }else{
+        console.log("Form is valid!");
       }
 
     };
