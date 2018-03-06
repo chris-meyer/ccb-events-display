@@ -47,6 +47,8 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         return;
       }else{
         console.log("Form is valid!");
+        //Save the values to the file
+        
       }
 
     };
