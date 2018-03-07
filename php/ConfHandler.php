@@ -26,10 +26,13 @@ class ConfHandler {
 
   public function setSettings($changed_settings) {
     //Grab the current settings
-
+    $current_settings = $this->getSettings();
     //Set the settings that changed
-
+    foreach($changed_settings as $setting => $value){
+      $current_settings[$setting] = $value;
+    }
     //Re-save the settings to the conf file
+    
   }
 }
 
