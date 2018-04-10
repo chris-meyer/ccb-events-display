@@ -48,7 +48,14 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
       }else{
         console.log("Form is valid!");
         //Save the values to the file
-        
+        $http.post('php/save_to_conf.php',$scope.conf).then(
+          function saveSuccess(response){
+
+          },
+          function saveFailure(response){
+
+          },
+        ); //END SAVE TO CONF CALL
       }
 
     };

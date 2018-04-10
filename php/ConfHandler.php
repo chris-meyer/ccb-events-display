@@ -36,6 +36,15 @@ class ConfHandler {
 
   }
 
+  /**
+  * Validates the settings to save
+  * @param $settings_array - the array of settings passed from the client
+  * @return bool
+  */
+  public function checkSettingsToSave($settings_array){
+
+  }
+
  /**
  * Writes an associative array of settings to the conf file
  * @param $array - the array of settings

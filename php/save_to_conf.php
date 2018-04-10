@@ -2,7 +2,9 @@
 require "ConfHandler.php";
 
 $conf_handler = new ConfHandler();
-$conf_settings = $conf_handler->setSettings();
+if($conf_handler->checkSettingsToSave($_POST)){
+    $conf_settings = $conf_handler->setSettings();
+}
 
 
 ?>
