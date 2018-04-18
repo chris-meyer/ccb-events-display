@@ -11,49 +11,49 @@
       <form name="confForm" novalidate>
 
         <div class="form-group">
-          <label for="apiUser">CCB API Church Name</label>
-          <input type="text" class="form-control" name="ccbChurchName" ng-model="conf.ccbChurchName" placeholder="goodshep" value="{{confSettings.ccb_church}}" required>
+          <label for="ccb_church">CCB API Church Name</label>
+          <input type="text" class="form-control" name="ccb_church" ng-model="conf.ccb_church" placeholder="goodshep" value="{{confSettings.ccb_church}}" required>
         </div>
         <div class="form-group">
-          <label for="ccbApiUser">CCB API User</label>
-          <input type="text" class="form-control" name="ccbApiUser" ng-model="conf.ccbApiUser" placeholder="user" value="{{confSettings.ccb_user}}" required>
+          <label for="ccb_user">CCB API User</label>
+          <input type="text" class="form-control" name="ccb_user" ng-model="conf.ccb_user" placeholder="user" value="{{confSettings.ccb_user}}" required>
         </div>
         <div class="form-group">
-          <label for="ccbApiPass">CCB API Password</label>
-          <input type="password" class="form-control" name="ccbApiPass" ng-model="conf.ccbApiPass" placeholder="pass123" value="{{confSettings.ccb_pass}}" required>
+          <label for="ccb_pass">CCB API Password</label>
+          <input type="password" class="form-control" name="ccb_pass" ng-model="conf.ccb_pass" placeholder="pass123" value="{{confSettings.ccb_pass}}" required>
         </div>
 
         <div class="form-group">
-          <label for="daysAhead">Days Ahead</label>
-          <input type="text" class="form-control" name="daysAhead" ng-model="conf.daysAhead" placeholder="7" value="{{confSettings.days_ahead}}" required>
+          <label for="days_ahead">Days Ahead</label>
+          <input type="text" class="form-control" name="days_ahead" ng-model="conf.days_ahead" placeholder="7" value="{{confSettings.days_ahead}}" required>
         </div>
         <div class="form-group">
-          <label for="daysFormat">Days of Week Format</label>
-          <input type="text" class="form-control" name="daysFormat" ng-model="conf.daysFormat" placeholder="Sun,Mon,Tue,Wed,Thu,Fri,Sat" value="{{confSettings.days_of_week.join(',')}}" required>
+          <label for="days_of_week">Days of Week Format</label>
+          <input type="text" class="form-control" name="days_of_week" ng-model="conf.days_of_week" placeholder="Sun,Mon,Tue,Wed,Thu,Fri,Sat" value="{{confSettings.days_of_week.join(',')}}" required>
         </div>
         <div class="form-group">
-          <label for="itemLimit">Item Limit</label>
-          <input type="text" class="form-control" name="itemLimit" ng-model="conf.itemLimit" placeholder="4" value="{{confSettings.item_limit}}" required>
+          <label for="item_limit">Item Limit</label>
+          <input type="text" class="form-control" name="item_limit" ng-model="conf.item_limit" placeholder="4" value="{{confSettings.item_limit}}" required>
         </div>
         <div class="form-group">
-          <label for="swapFrequency">Event Swap Frequency <small>(in seconds)</small></label>
-          <input type="text" class="form-control" name="swapFrequency" ng-model="conf.swapFrequency" placeholder="4" value="{{confSettings.swap_frequency / 1000}}" required>
+          <label for="swap_frequency">Event Swap Frequency <small>(in seconds)</small></label>
+          <input type="text" class="form-control" name="swap_frequency" ng-model="conf.swap_frequency" placeholder="4" value="{{confSettings.swap_frequency / 1000}}" required>
         </div>
         <div class="form-group">
-          <label for="slideFrequency">Slide Change Frequency <small>(in seconds)</small></label>
-          <input type="text" class="form-control" name="slideFrequency" ng-model="conf.slideFrequency" placeholder="4" value="{{confSettings.slide_frequency / 1000}}" required>
+          <label for="slide_frequency">Slide Change Frequency <small>(in seconds)</small></label>
+          <input type="text" class="form-control" name="slide_frequency" ng-model="conf.slide_frequency" placeholder="4" value="{{confSettings.slide_frequency / 1000}}" required>
         </div>
         <div class="form-group">
-          <label for="refreshFrequency">Page Refresh Frequency <small>(in minutes)</small></label>
-          <input type="text" class="form-control" name="refreshFrequency" ng-model="conf.refreshFrequency" placeholder="60" value="{{confSettings.page_refresh_frequency / 60000}}" required>
+          <label for="page_refresh_frequency">Page Refresh Frequency <small>(in minutes)</small></label>
+          <input type="text" class="form-control" name="page_refresh_frequency" ng-model="conf.page_refresh_frequency" placeholder="60" value="{{confSettings.page_refresh_frequency / 60000}}" required>
         </div>
         <div class="form-group">
-          <label for="headPath">Header Path</label>
-          <input type="text" class="form-control" name="headPath" ng-model="conf.headPath" placeholder="images/myhead.jpg" value="{{confSettings.slide_head_img}}" required>
+          <label for="slide_head_img">Header Path</label>
+          <input type="text" class="form-control" name="slide_head_img" ng-model="conf.slide_head_img" placeholder="images/myhead.jpg" value="{{confSettings.slide_head_img}}" required>
         </div>
         <div class="form-group">
-          <label for="slidePath">Slider Path</label>
-          <input type="text" class="form-control" name="slidePath" ng-model="conf.slidePath" placeholder="/home/myuser/files/ccb-test" value="{{confSettings.slide_img_path}}" required>
+          <label for="slide_img_path">Slider Path</label>
+          <input type="text" class="form-control" name="slide_img_path" ng-model="conf.slide_img_path" placeholder="/home/myuser/files/ccb-test" value="{{confSettings.slide_img_path}}" required>
         </div>
         <button type="submit" class="btn btn-default" data-ng-click="submit(confForm)">Submit</button>
 
