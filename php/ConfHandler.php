@@ -46,7 +46,7 @@ class ConfHandler {
   * @param $settings_array - the array of settings passed from the client
   * @return bool
   */
-  public function checkSettingsToSave($settings_array){
+  public function checkSettingsToSave(&$settings_array){
     $errors = array();
     if(!$settings_array['ccb_church']){
       $errors[] = "Missing CCB API Church Name";
@@ -68,12 +68,21 @@ class ConfHandler {
     }
     if(!$settings_array['swap_frequency']){
       $errors[] = "Missing Event Swap Frequency";
+    }else{
+      //Convert seconds to ms
+      $settings_array['swap_frequency'] = ( intval($settings_array['swap_frequency']) * 1000 );
     }
     if(!$settings_array['slide_frequency']){
       $errors[] = "Missing Slide Change Frequency";
+    }else{
+      //Convert seconds to ms
+      $settings_array['slide_frequency'] = ( intval($settings_array['slide_frequency']) * 1000 );
     }
     if(!$settings_array['page_refresh_frequency']){
       $errors[] = "Missing Page Refresh Frequency";
+    }else{
+      //Convert minutes to ms
+      $settings_array['page_refresh_frequency'] = ( intval($settings_array['page_refresh_frequency']) * 60 * 1000 );
     }
     if(!$settings_array['slide_head_img']){
       $errors[] = "Missing Header Path";
