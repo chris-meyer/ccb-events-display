@@ -42,7 +42,42 @@ class ConfHandler {
   * @return bool
   */
   public function checkSettingsToSave($settings_array){
+    $errors = array();
+    if(!$settings_array['ccb_church']){
+      $errors[] = "Missing CCB API Church Name";
+    }
+    if(!$settings_array['ccb_user']){
+      $errors[] = "Missing CCB API User";
+    }
+    if(!$settings_array['ccb_pass']){
+      $errors[] = "Missing CCB API Password";
+    }
+    if(!$settings_array['days_ahead']){
+      $errors[] = "Missing Days Ahead";
+    }
+    if(!$settings_array['days_of_week']){
+      $errors[] = "Missing Days of Week Format";
+    }
+    if(!$settings_array['item_limit']){
+      $errors[] = "Missing Item Limit";
+    }
+    if(!$settings_array['swap_frequency']){
+      $errors[] = "Missing Event Swap Frequency";
+    }
+    if(!$settings_array['slide_frequency']){
+      $errors[] = "Missing Slide Change Frequency";
+    }
+    if(!$settings_array['page_refresh_frequency']){
+      $errors[] = "Missing Page Refresh Frequency";
+    }
+    if(!$settings_array['slide_head_img']){
+      $errors[] = "Missing Header Path";
+    }
+    if(!$settings_array['slide_img_path']){
+      $errors[] = "Missing Slider Path";
+    }
 
+    return $errors;
   }
 
  /**

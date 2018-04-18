@@ -50,10 +50,12 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         //Save the values to the file
         $http.post('php/save_to_conf.php',$scope.conf).then(
           function saveSuccess(response){
-
+            console.log("saveSuccess");
+            console.log(response);
           },
           function saveFailure(response){
-
+            console.log("saveFailure");
+            console.log(response);
           },
         ); //END SAVE TO CONF CALL
       }
