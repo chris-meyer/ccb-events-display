@@ -14,13 +14,15 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
     .success(function(config_data) {
       console.log("Got config!");
       //Use the existing config values for the form
-      $scope.confSettings = feedConfigService.parseConfig(config_data);
-      console.log($scope.confSettings);
+      // $scope.confSettings = feedConfigService.parseConfig(config_data);
+      $scope.conf = feedConfigService.parseConfig(config_data);
+      console.log($scope.conf);
     })
     .error(function(response, status) {
       console.log("No config: " + response);
       //No config. Use the default values for the form
-      $scope.confSettings = {
+      //$scope.confSettings = {
+      $scope.conf = {
         days_ahead: 14,
         days_of_week: "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday",
         item_limit: 6,
@@ -30,13 +32,17 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         slide_head_img: "images/head.jpg",
         slide_img_path: "/full/path/to/slider/images/folder"
       };
-      console.log($scope.confSettings);
+      //console.log($scope.confSettings);
+      console.log($scope.conf);
     });
 
     // Form submit handler.
     $scope.submit = function(form) {
       console.log("Submitted the form!");
-      //Non-empty values will be in $scope.conf.
+      /*
+      * Non-empty values will be in $scope.conf.
+      * At this point, $scope.conf will only have the values from the form
+      */
       console.log($scope.conf);
       // Trigger validation flag.
       $scope.submitted = true;
@@ -52,6 +58,8 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
           function saveSuccess(response){
             console.log("saveSuccess");
             console.log(response);
+            //TODO: Use the response code to show the errors
+
           },
           function saveFailure(response){
             console.log("saveFailure");
