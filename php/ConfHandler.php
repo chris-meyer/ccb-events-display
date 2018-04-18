@@ -24,16 +24,21 @@ class ConfHandler {
     }
   }
 
-  public function setSettings($changed_settings) {
+  public function setSettings($submitted_settings) {
     //Grab the current settings
     $current_settings = $this->getSettings();
 
     //Set the settings that changed
-    foreach($changed_settings as $setting => $value){
-      $current_settings[$setting] = $value;
+    foreach($submitted_settings as $setting => $value){
+      if($value != $current_settings[$setting]){
+          $current_settings[$setting] = $value;
+      }
     }
-    //Re-save the settings to the conf file
+    //There is just a [CCB] section containing all of the settings
+    $current_settings = array('CCB' => $current_settings);
 
+    //Re-save the settings to the conf file
+    $this->_writeToConf($current_settings,$this->conf_location);
   }
 
   /**
