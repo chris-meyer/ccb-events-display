@@ -38,7 +38,7 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
 
     // Form submit handler.
     $scope.submit = function(form) {
-      console.log("Submitted the form!");
+      console.log("Submitted the form with conf values:");
       /*
       * Non-empty values will be in $scope.conf.
       * At this point, $scope.conf will only have the values from the form
@@ -52,9 +52,21 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         console.log("Form is invalid!");
         return;
       }else{
+        let conf_values = $scope.conf;
         console.log("Form is valid!");
+
+        //Convert the time values to MS
+        conf_values['swap_frequency'] *= 1000; // seconds => ms
+        conf_values['slide_frequency'] *= 1000; // seconds => ms
+        conf_values['page_refresh_frequency'] *= 60000; // minutes => ms
+
+        console.log('conf_values DUMP');
+        console.log(conf_values);
+
+        //return;
+
         //Save the values to the file
-        $http.post('php/save_to_conf.php',$scope.conf).then(
+        $http.post('php/save_to_conf.php',conf_values).then(
           function saveSuccess(response){
             console.log("saveSuccess");
             console.log(response);

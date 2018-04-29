@@ -38,9 +38,9 @@ myApp.service('feedConfigService', function ($http) {
       days_ahead: parseInt(c['days_ahead']), //4 items are shown at a time
       days_of_week: c['days_of_week'].split(','),
       item_limit: parseInt(c['item_limit']), //4 items are shown at a time
-      swap_frequency: parseInt(c['swap_frequency']), //every 4 seconds
-      slide_frequency: parseInt(c['slide_frequency']),
-      page_refresh_frequency: parseFloat(c['page_refresh_frequency']), //every 2 hours
+      swap_frequency: ( parseInt(c['swap_frequency']) / 1000 ), //every 4 seconds
+      slide_frequency: ( parseInt(c['slide_frequency']) / 1000 ),
+      page_refresh_frequency: ( parseFloat(c['page_refresh_frequency']) / 60000 ), //every 2 hours
       slide_head_img: c['slide_head_img'],
       slide_img_path: c['slide_img_path']
     };
