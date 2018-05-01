@@ -15,12 +15,26 @@ class ConfHandler {
    * Fetches the configuration settings from ccb-events.conf
    * @return Associative array of settings
    */
-  public function getSettings() {
-    $conf_settings = parse_ini_file($this->conf_location);
-    if(!$conf_settings) {
-      return NULL;
+  public function getSettings($provide_defaults = FALSE) {
+    if(!file_exists($this->conf_location)) {
+      if($provide_defaults){
+          //Return the default settings
+          return array(
+            'days_ahead' => 14,
+            'days_of_week' => 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday',
+            'item_limit' => 6,
+            'swap_frequency' => 4000, // 4 seconds
+            'slide_frequency' => 3000, // 3 seconds
+            'page_refresh_frequency' => 600000, // 10 minutes
+            'slide_head_img' => 'images/head.jpg',
+            'slide_img_path' => '/full/path/to/slider/images/folder'
+          );
+      }else{
+          return NULL;
+      }
+
     } else {
-      return $conf_settings;
+      return parse_ini_file($this->conf_location);
     }
   }
 
