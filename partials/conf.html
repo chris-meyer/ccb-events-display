@@ -8,7 +8,7 @@
     <div class="col-xs-12" id="coldiv" data-ng-controller="ConfController">
       <h1>Configuration</h1>
       <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
-      <form name="confForm" novalidate>
+      <form name="confForm" novalidate data-ng-submit="submit(this)">
 
         <div class="form-group">
           <label for="ccb_church">CCB API Church Name</label>
@@ -55,7 +55,7 @@
           <label for="slide_img_path">Slider Path</label>
           <input type="text" class="form-control" name="slide_img_path" ng-model="conf.slide_img_path" placeholder="/home/myuser/files/ccb-test" value="{{conf.slide_img_path}}" required>
         </div>
-        <button type="submit" class="btn btn-default" data-ng-click="submit(confForm)">Submit</button>
+        <button type="submit" class="btn btn-default">Submit</button>
 
       </form>
       <br>
