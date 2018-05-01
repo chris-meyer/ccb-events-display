@@ -30,6 +30,10 @@ class ConfHandler {
 
     //Set the settings that changed
     foreach($submitted_settings as $setting => $value){
+      //Take array settings and make them into a string
+      if(is_array($value)){
+        $value = implode(',',$value);
+      }
       if($value != $current_settings[$setting]){
           $current_settings[$setting] = $value;
       }
