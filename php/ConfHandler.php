@@ -74,19 +74,19 @@ class ConfHandler {
       $errors[] = "Missing Event Swap Frequency";
     }else{
       //Convert seconds to ms
-      $settings_array['swap_frequency'] = ( intval($settings_array['swap_frequency']) * 1000 );
+      $settings_array['swap_frequency'] = ( intval($settings_array['swap_frequency']) );
     }
     if(!$settings_array['slide_frequency']){
       $errors[] = "Missing Slide Change Frequency";
     }else{
-      //Convert seconds to ms
-      $settings_array['slide_frequency'] = ( intval($settings_array['slide_frequency']) * 1000 );
+      //Should be sent as seconds in ms
+      $settings_array['slide_frequency'] = ( intval($settings_array['slide_frequency']) );
     }
     if(!$settings_array['page_refresh_frequency']){
       $errors[] = "Missing Page Refresh Frequency";
     }else{
-      //Convert minutes to ms
-      $settings_array['page_refresh_frequency'] = ( intval($settings_array['page_refresh_frequency']) * 60 * 1000 );
+      //Should be sent as minutes in ms
+      $settings_array['page_refresh_frequency'] = ( intval($settings_array['page_refresh_frequency']) );
     }
     if(!$settings_array['slide_head_img']){
       $errors[] = "Missing Header Path";
