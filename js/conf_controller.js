@@ -32,18 +32,17 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         slide_head_img: "images/head.jpg",
         slide_img_path: "/full/path/to/slider/images/folder"
       };
-      //console.log($scope.confSettings);
       console.log($scope.conf);
     });
 
     // Form submit handler.
     $scope.submit = function(form) {
-      console.log("Submitted the form with conf values:");
       /*
       * Non-empty values will be in $scope.conf.
       * At this point, $scope.conf will only have the values from the form
       */
-      console.log($scope.conf);
+//      console.log($scope.conf);
+
       // Trigger validation flag.
       $scope.submitted = true;
 
@@ -52,18 +51,17 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         console.log("Form is invalid!");
         return;
       }else{
-        let conf_values = $scope.conf;
         console.log("Form is valid!");
+        //Copy by value so $scope.conf doesn't get messed up
+        let conf_values = angular.copy($scope.conf);
 
         //Convert the time values to MS
         conf_values['swap_frequency'] *= 1000; // seconds => ms
         conf_values['slide_frequency'] *= 1000; // seconds => ms
         conf_values['page_refresh_frequency'] *= 60000; // minutes => ms
 
-        console.log('conf_values DUMP');
-        console.log(conf_values);
-
-        //return;
+        // console.log('conf_values DUMP');
+        // console.log(conf_values);
 
         //Save the values to the file
         $http.post('php/save_to_conf.php',conf_values).then(
@@ -81,7 +79,5 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
       }
 
     };
-
-
 
 }]);
