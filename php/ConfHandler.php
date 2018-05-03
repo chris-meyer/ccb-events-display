@@ -8,7 +8,7 @@ class ConfHandler {
   private $conf_location;
 
   public function __construct(){
-    $this->conf_location = realpath(__DIR__.'/../ccb-events.conf');
+    $this->conf_location = ( realpath(__DIR__.'/../') . '/ccb-events.conf' );
   }
 
   /*
@@ -42,15 +42,20 @@ class ConfHandler {
     //Grab the current settings
     $current_settings = $this->getSettings();
 
-    //Set the settings that changed
-    foreach($submitted_settings as $setting => $value){
-      //Take array settings and make them into a string
-      if(is_array($value)){
-        $value = implode(',',$value);
+    if($current_settings !== NULL){
+      //Set the settings that changed
+      foreach($submitted_settings as $setting => $value){
+        //Take array settings and make them into a string
+        if(is_array($value)){
+          $value = implode(',',$value);
+        }
+        if($value != $current_settings[$setting]){
+            $current_settings[$setting] = $value;
+        }
       }
-      if($value != $current_settings[$setting]){
-          $current_settings[$setting] = $value;
-      }
+    }else{
+      //Config settings are being saved for the first time. Use what was sent.
+      $current_settings = $submitted_settings;
     }
     //There is just a [CCB] section containing all of the settings
     $current_settings = array('CCB' => $current_settings);
