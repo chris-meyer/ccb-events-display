@@ -15,12 +15,12 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         function getSuccess(response) {
           console.log("Got feedConfigService config!");
           //console.log(response);
-          let parsed_conf = angular.copy(response.data);
-          parsed_conf['swap_frequency'] /= 1000; // ms to seconds
-          parsed_conf['slide_frequency'] /= 1000; // ms to seconds
-          parsed_conf['page_refresh_frequency'] /= 60000; // ms to minutes
+          // let parsed_conf = angular.copy(response.data);
+          // parsed_conf['swap_frequency'] /= 1000; // ms to seconds
+          // parsed_conf['slide_frequency'] /= 1000; // ms to seconds
+          // parsed_conf['page_refresh_frequency'] /= 60000; // ms to minutes
 
-          $scope.conf = parsed_conf;
+          $scope.conf = feedConfigService.parseConfig(response.data);
         },
         function getFailure(response){
              console.log("feedConfigService getFailure");

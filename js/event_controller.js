@@ -8,11 +8,14 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 */
 eventControllers.controller("ListController", ['$scope','$http','$interval','feedConfigService', function ($scope, $http, $interval, feedConfigService){
   //$http.get returns a Promise, so we can use then to determine what to do next
-   feedConfigService.getConfig().then(function(cdata) {
+   feedConfigService.getConfig()
+   .then(
+     function(response) {
     //  console.log('getConfig result');
     //  console.log(cdata);
 
-     let FEED_CONFIG = feedConfigService.parseConfig(cdata);
+     let FEED_CONFIG = feedConfigService.parseConfig(response.data);
+
     //  console.log('parseConfig result');
     //  console.log(FEED_CONFIG);
 
