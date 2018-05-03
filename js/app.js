@@ -7,31 +7,7 @@ var myApp = angular.module('myApp',[
 myApp.service('feedConfigService', function ($http) {
 
   this.getConfig = function () {
-    //TODO: This is bad. Use a server-side script to get this data
-    //$.get('ccb-events.conf');
-    $http.get('php/get_conf.php').then(
-      function getSuccess(response){
-        console.log("getConfig getSuccess");
-        console.log(response);
-
-        let parsed_conf = angular.copy(response.data);
-        parsed_conf['swap_frequency'] /= 1000; // ms to seconds
-        parsed_conf['slide_frequency'] /= 1000; // ms to seconds
-        parsed_conf['page_refresh_frequency'] /= 60000; // ms to minutes
-
-        console.log("getConfig getSuccess returning parsed_conf");
-        console.log(parsed_conf);
-
-        return parsed_conf;
-
-      },
-      function getFailure(response){
-        console.log("getConfig getFailure");
-        console.log(response);
-
-        return false;
-      },
-    );//end get conf call
+    return $http.get('php/get_conf.php');
   }
 
   this.parseConfig = function(data) {
