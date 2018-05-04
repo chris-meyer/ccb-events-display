@@ -41,22 +41,22 @@ class ConfHandler {
   public function setSettings($submitted_settings) {
     //Grab the current settings
     $current_settings = $this->getSettings();
-
-    if($current_settings !== NULL){
-      //Set the settings that changed
-      foreach($submitted_settings as $setting => $value){
-        //Take array settings and make them into a string
-        if(is_array($value)){
-          $value = implode(',',$value);
-        }
-        if($value != $current_settings[$setting]){
-            $current_settings[$setting] = $value;
-        }
-      }
-    }else{
-      //Config settings are being saved for the first time. Use what was sent.
-      $current_settings = $submitted_settings;
+    if(!isset($current_settings)){
+      $current_settings = array();
     }
+
+    //Set the settings that changed
+    foreach($submitted_settings as $setting => $value){
+      //Take array settings and make them into a string
+      if(is_array($value)){
+        $value = implode(',',$value);
+      }
+      //Save the submitted value if it doesn't match the config
+      if(!isset($current_settings[$setting]) || ( $value != $current_settings[$setting] )){
+          $current_settings[$setting] = $value;
+      }
+    }
+
     //There is just a [CCB] section containing all of the settings
     $current_settings = array('CCB' => $current_settings);
 
