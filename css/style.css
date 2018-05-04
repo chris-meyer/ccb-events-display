@@ -124,3 +124,7 @@ img.announcement.ng-hide-remove.ng-hide-remove-active {
 form label{
   color: white;
 }
+
+form[name=confForm] .help-block{
+  color: white;
+}
