@@ -121,6 +121,12 @@ img.announcement.ng-hide-remove.ng-hide-remove-active {
 /*
 * Configuration Form Styles
 */
+form[name=confForm]{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 form label{
   color: white;
 }
