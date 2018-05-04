@@ -14,7 +14,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','fee
     //  console.log('getConfig result');
     //  console.log(cdata);
 
-     let FEED_CONFIG = feedConfigService.parseConfig(response.data);
+     let FEED_CONFIG = feedConfigService.parseConfig(response.data,2);
 
     //  console.log('parseConfig result');
     //  console.log(FEED_CONFIG);
