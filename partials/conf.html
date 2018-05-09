@@ -14,6 +14,9 @@
           <label for="ccb_church">CCB API Church Name</label>
           <input type="text" class="form-control" name="ccb_church" ng-model="conf.ccb_church" placeholder="mychurch" value="{{conf.ccb_church}}" required>
           <span class="help-block">The Church Name Portion of your CCB Instance (CHURCH).ccbchurch.com</span>
+          <div ng-show="confForm.$submitted || confForm.ccb_church.$touched">
+            <div class="form-alert" ng-show="confForm.ccb_church.$error.required">Please provide the Church Name for the CCB Instance.</div>
+          </div>
         </div>
         <div class="form-group">
           <label for="ccb_user">CCB API User</label>
