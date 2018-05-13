@@ -137,3 +137,20 @@ form[name=confForm] .help-block{
 .form-alert{
   color: #ff8300;
 }
+
+#conf-messages.ng-hide-add,
+#conf-messages.ng-hide-remove {
+  -webkit-transition:all ease-in-out 1s;
+  -moz-transition:all ease-in-out 1s;
+  -o-transition:all ease-in-out 1s;
+  transition:all ease-in-out 1s;
+}
+
+#conf-message.ng-hide-add{
+  opacity: 1;
+}
+
+#conf-messages.ng-hide
+ {
+    opacity : 0;
+}
