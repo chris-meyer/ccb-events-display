@@ -7,8 +7,10 @@
     </div>
     <div class="col-xs-12" id="coldiv" data-ng-controller="ConfController">
       <h1>Configuration</h1>
-      <div id="conf-messages" class="alert alert-success col-md-6 col-xs-12" ng-show="showMessages" data-ng-bind="messages" ></div>
-      <br>
+      <div class="col-xs-12">
+        <div id="conf-messages" class="alert alert-success col-md-6 col-xs-12" ng-show="showMessages" data-ng-bind="messages" ></div>
+      </div>
+      
       <form name="confForm" class="col-md-6 col-xs-12" novalidate data-ng-submit="submit(this)">
 
         <div class="form-group">
