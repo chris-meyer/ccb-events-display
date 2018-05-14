@@ -69,9 +69,8 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
             $scope.showMessages = true;
             setTimeout(function(){
               $scope.showMessages = false;
-              $scope.messages = false;
-              console.log('hiding messages');
-            },5000);
+              $scope.messages = '';
+            },3000);
           },
           function saveFailure(response){
             console.log("saveFailure");
