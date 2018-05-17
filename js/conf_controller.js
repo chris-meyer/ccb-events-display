@@ -9,7 +9,8 @@ var confController = angular.module("confController", ['ngAnimate']);
 confController.controller("ConfController", ['$scope','$http','feedConfigService', function ($scope, $http, feedConfigService){
   $scope.conf = {};
   $scope.showMessages = false;
-  const confMessagesEl = angular.element( document.querySelector( '#conf-messages' ) );
+
+ const confMessagesEl = angular.element( document.querySelector( '#conf-messages' ) );
 
 
   /*
@@ -38,7 +39,6 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
       .then(
         function getSuccess(response) {
           $scope.conf = feedConfigService.parseConfig(response.data);
-
         },
         function getFailure(response){
              confMessagesEl.addClass('alert-danger');
