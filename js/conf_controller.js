@@ -9,24 +9,43 @@ var confController = angular.module("confController", ['ngAnimate']);
 confController.controller("ConfController", ['$scope','$http','feedConfigService', function ($scope, $http, feedConfigService){
   $scope.conf = {};
   $scope.showMessages = false;
+  const confMessagesEl = angular.element( document.querySelector( '#conf-messages' ) );
 
+
+  /*
+  * Displays a message on the page. Message fades away after about 3 seconds
+  * @param msg - the message to show
+  * @param success - whether it's a success or fail message
+  */
+  function _showMessage(msg,success){
+    $scope.messages = msg;
+    if(success === true){
+      confMessagesEl.addClass('alert-success');
+      confMessagesEl.removeClass('alert-danger');
+    }else{
+      confMessagesEl.addClass('alert-danger');
+      confMessagesEl.removeClass('alert-success');
+    }
+    $scope.showMessages = true;
+    setTimeout(function(){
+      $scope.showMessages = false;
+      $scope.messages = '';
+    },3000);
+  }
 
   //Attempt to get the configuration
   feedConfigService.getConfig()
       .then(
         function getSuccess(response) {
-          console.log("Got feedConfigService config!");
-          //console.log(response);
-          // let parsed_conf = angular.copy(response.data);
-          // parsed_conf['swap_frequency'] /= 1000; // ms to seconds
-          // parsed_conf['slide_frequency'] /= 1000; // ms to seconds
-          // parsed_conf['page_refresh_frequency'] /= 60000; // ms to minutes
-
           $scope.conf = feedConfigService.parseConfig(response.data);
+
         },
         function getFailure(response){
-             console.log("feedConfigService getFailure");
-             console.log(response);
+             // console.log("feedConfigService getFailure");
+             // console.log(response);
+             confMessagesEl.addClass('alert-danger');
+             confMessagesEl.removeClass('alert-success');
+
         }
       );
 
@@ -44,10 +63,10 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
 
       // If form is invalid, return and let AngularJS show validation errors.
       if (form.$invalid) {
-        console.log("Form is invalid!");
+        _showMessage('Form is invalid!',false);
         return;
       }else{
-        console.log("Form is valid!");
+        //console.log("Form is valid!");
         //Copy by value so $scope.conf doesn't get messed up
         let conf_values = angular.copy($scope.conf);
 
@@ -62,15 +81,19 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         //Save the values to the file
         $http.post('php/save_to_conf.php',conf_values).then(
           function saveSuccess(response){
-            console.log("saveSuccess");
-            console.log(response);
+            //console.log("saveSuccess");
+            //console.log(response);
             //TODO: Use the response code to show the errors
-            $scope.messages = 'Config settings saved!';
-            $scope.showMessages = true;
-            setTimeout(function(){
-              $scope.showMessages = false;
-              $scope.messages = '';
-            },3000);
+            //$scope.messages = 'Config settings saved!';
+            //confMessagesEl.addClass('alert-success');
+            //confMessagesEl.removeClass('alert-danger');
+
+            // $scope.showMessages = true;
+            // setTimeout(function(){
+            //   $scope.showMessages = false;
+            //   $scope.messages = '';
+            // },3000);
+            _showMessage('Config settings saved!',true);
           },
           function saveFailure(response){
             console.log("saveFailure");
