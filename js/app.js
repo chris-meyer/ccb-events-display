@@ -1,45 +1,40 @@
 var myApp = angular.module('myApp',[
   'ngRoute',
-  'eventControllers'
+  'eventControllers',
+  'confController'
 ])
 
 myApp.service('feedConfigService', function ($http) {
 
   this.getConfig = function () {
-    //TODO: This is bad. Use a server-side script to get this data
-    return $.get('ccb-events.conf');
+    return $http.get('php/get_conf.php');
   }
 
-  this.parseConfig = function(data) {
-    //Regex to parse out the values
-    const regex = /([a-z_]+)\s*=\s*"?([\w\d:_!@#$%^&*()\[\]{},.+\/-]+)"?/gi;
-    let m;
-    let c = {};
-    while ((m = regex.exec(data)) !== null) {
-      // This is necessary to avoid infinite loops with zero-width matches
-      if (m.index === regex.lastIndex) {
-          regex.lastIndex++;
-      }
+/*
+ * Takes in an array of config data and adjusts the values for use
+ * @param config_data
+ * @param convert_type - bit field where 1 = numbers and 10 = arrays
+ * @return The parsed config settings as an associative array
+ */
+  this.parseConfig = function(config_data,convert_type) {
 
-      // The result can be accessed through the `m`-variable.
-      // m.forEach((match, groupIndex) => {
-      //     //console.log(`Found match, group ${groupIndex}: ${match}`);
-      // });
+    if ( typeof(convert_type) === 'undefined' ){
+      //Will convert numbers and arrays since 3 = 11 in binary
+      var convert_type = 3;
+    }
 
-      c[m[1]] = m[2];
+    let parsed_conf = angular.copy(config_data);
+    if( (convert_type & 1) == 1){
+      parsed_conf['swap_frequency'] /= 1000; // ms to seconds
+      parsed_conf['slide_frequency'] /= 1000; // ms to seconds
+      parsed_conf['page_refresh_frequency'] /= 60000; // ms to minutes
+    }
+    if( (convert_type & 2) == 2){
+      parsed_conf['days_of_week'] = parsed_conf['days_of_week'].split(',');
+    }
 
-    } //endwhile
+    return parsed_conf;
 
-    let d = {
-      days_of_week: c['days_of_week'].split(','),
-      item_limit: parseInt(c['item_limit']), //4 items are shown at a time
-      swap_frequency: parseInt(c['swap_frequency']), //every 4 seconds
-      slide_frequency: parseInt(c['slide_frequency']),
-      page_refresh_frequency: parseFloat(c['page_refresh_frequency']), //every 2 hours
-      slide_head_img: c['slide_head_img']
-    };
-
-    return d;
   }
 
 });
@@ -56,6 +51,10 @@ myApp.config(['$routeProvider', function($routeProvider){
   .when('/list-with-slides', {
     templateUrl: 'partials/list-with-slides.html',
     controller: 'ListController'
+  })
+  .when('/conf', {
+    templateUrl: 'partials/conf.html',
+    controller: 'ConfController'
   })
   .otherwise({
     redirectTo: '/list' //Go to list route by default
