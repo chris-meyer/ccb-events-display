@@ -41,11 +41,9 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
 
         },
         function getFailure(response){
-             // console.log("feedConfigService getFailure");
-             // console.log(response);
              confMessagesEl.addClass('alert-danger');
              confMessagesEl.removeClass('alert-success');
-
+             _showMessage("Problem reading config: " + response.statusText,false);
         }
       );
 
@@ -63,7 +61,7 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
 
       // If form is invalid, return and let AngularJS show validation errors.
       if (form.$invalid) {
-        _showMessage('Form is invalid!',false);
+        _showMessage('Form is invalid! Check the fields.',false);
         return;
       }else{
         //console.log("Form is valid!");
@@ -81,23 +79,11 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
         //Save the values to the file
         $http.post('php/save_to_conf.php',conf_values).then(
           function saveSuccess(response){
-            //console.log("saveSuccess");
-            //console.log(response);
-            //TODO: Use the response code to show the errors
-            //$scope.messages = 'Config settings saved!';
-            //confMessagesEl.addClass('alert-success');
-            //confMessagesEl.removeClass('alert-danger');
-
-            // $scope.showMessages = true;
-            // setTimeout(function(){
-            //   $scope.showMessages = false;
-            //   $scope.messages = '';
-            // },3000);
             _showMessage('Config settings saved!',true);
           },
           function saveFailure(response){
-            console.log("saveFailure");
-            console.log(response);
+            //console.log(response);
+            _showMessage('Problem saving config: ' + response.statusText,false);
           },
         ); //END SAVE TO CONF CALL
       }
