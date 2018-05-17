@@ -13,6 +13,7 @@
 
 .loader-overlay h2{
   color: black;
+  text-align: center;
 }
 
 .loader {
@@ -38,4 +39,21 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+.loader-overlay.ng-hide-add,
+.loader-overlay.ng-hide-remove {
+  -webkit-transition:all ease-in-out 3s;
+  -moz-transition:all ease-in-out 3s;
+  -o-transition:all ease-in-out 3s;
+  transition:all ease-in-out 3s;
+}
+
+.loader-overlay.ng-hide-add {
+  opacity: 1;
+}
+
+.loader-overlay.ng-hide {
+  opacity : 0;
 }
