@@ -94,14 +94,6 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="slide_head_img">Header Path</label>
-          <input type="text" class="form-control" name="slide_head_img" ng-model="conf.slide_head_img" placeholder="images/myhead.jpg" value="{{conf.slide_head_img}}" required>
-          <span class="help-block">The relative path to the header image file</span>
-          <div ng-show="confForm.$submitted || confForm.slide_head_img.$touched">
-            <div class="form-alert" ng-show="confForm.slide_head_img.$error.required">Please provide the header image path.</div>
-          </div>
-        </div>
-        <div class="form-group">
           <label for="slide_frequency">Slide Change Frequency <small>(in seconds)</small></label>
           <input type="text" class="form-control" name="slide_frequency" ng-model="conf.slide_frequency" placeholder="4" required>
           <span class="help-block">The speed at which announcement slides are rotated through</span>

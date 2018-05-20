@@ -95,8 +95,6 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','fee
     //Get limit from the config
     $scope.eventLimit = FEED_CONFIG.item_limit;
 
-    $scope.slide_head_img = FEED_CONFIG.slide_head_img;
-
     $scope.inRange = function(value){
       $inRange = false;
       if($scope.itemToggle.itemTL[value] === true){
