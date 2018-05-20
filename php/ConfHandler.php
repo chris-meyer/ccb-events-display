@@ -26,7 +26,6 @@ class ConfHandler {
             'swap_frequency' => 4000, // 4 seconds
             'slide_frequency' => 3000, // 3 seconds
             'page_refresh_frequency' => 600000, // 10 minutes
-            'slide_head_img' => 'images/head.jpg',
             'slide_img_path' => '/full/path/to/slider/images/folder'
           );
       }else{
@@ -106,9 +105,6 @@ class ConfHandler {
     }else{
       //Should be sent as minutes in ms
       $settings_array['page_refresh_frequency'] = ( intval($settings_array['page_refresh_frequency']) );
-    }
-    if(!$settings_array['slide_head_img']){
-      $errors[] = "Missing Header Path";
     }
     if(!$settings_array['slide_img_path']){
       $errors[] = "Missing Slider Path";
