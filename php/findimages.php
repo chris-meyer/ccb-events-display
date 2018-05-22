@@ -4,7 +4,13 @@ $ccbConf = parse_ini_file(realpath(__DIR__.'/../ccb-events.conf'));
 $dir = realpath($ccbConf['slide_img_path']);
 
 //The full system path to the web-accessible images
-$annImgPath = realpath(__DIR__.'/../images/announcements');
+$annImgPath = realpath(__DIR__.'/../images').'/announcements';
+
+//Create the announcements dir if it doesn't exist
+if(!is_dir($annImgPath)){
+  mkdir($annImgPath);
+}
+
 //The list of image paths used for the img src
 $annList = array();
 // Open a known directory, and proceed to read its contents
