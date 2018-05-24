@@ -1,0 +1,59 @@
+/*
+* CSS to create the loading spinner
+* Heavily borrowed from this example:
+* https://www.w3schools.com/howto/howto_css_loader.asp
+*/
+
+.loader-overlay {
+  position: absolute;
+  z-index: 99;
+  background: white;
+  height: 100%;
+}
+
+.loader-overlay h2{
+  color: black;
+  text-align: center;
+}
+
+.loader {
+  border: 16px solid #1246e6;
+  border-radius: 50%;
+  border-top: 16px solid #00fff0;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.loader-overlay.ng-hide-add,
+.loader-overlay.ng-hide-remove {
+  -webkit-transition:all ease-in-out 3s;
+  -moz-transition:all ease-in-out 3s;
+  -o-transition:all ease-in-out 3s;
+  transition:all ease-in-out 3s;
+}
+
+.loader-overlay.ng-hide-add {
+  opacity: 1;
+}
+
+.loader-overlay.ng-hide {
+  opacity : 0;
+}

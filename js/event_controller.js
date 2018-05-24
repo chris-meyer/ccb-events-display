@@ -6,7 +6,20 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-eventControllers.controller("ListController", ['$scope','$http','$interval','FEED_CONFIG', function ($scope, $http, $interval, FEED_CONFIG){
+eventControllers.controller("ListController", ['$scope','$http','$interval','feedConfigService', function ($scope, $http, $interval, feedConfigService){
+    $scope.eventsLoaded = false;
+  //$http.get returns a Promise, so we can use then to determine what to do next
+   feedConfigService.getConfig()
+   .then(
+     function(response) {
+    //  console.log('getConfig result');
+    //  console.log(cdata);
+
+     let FEED_CONFIG = feedConfigService.parseConfig(response.data,2);
+
+    //  console.log('parseConfig result');
+    //  console.log(FEED_CONFIG);
+
   //The http service allows for the reading the json returned by CCB
   $http.get('php/gs.php').success(function(data){
     var jRes = data.response;
@@ -23,7 +36,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     //The beginning of the list to show
     $scope.itemToggle.firstShown = 0;
     //The end of the list to show
-    $scope.itemToggle.lastShown = (FEED_CONFIG.itemLimit - 1);
+    $scope.itemToggle.lastShown = (FEED_CONFIG.item_limit - 1);
     //Number of items
     $scope.itemToggle.itemCnt = resItems.length;
 
@@ -31,7 +44,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       curItem = resItems[r];
 
       //Should this item be shown?
-      if(r < FEED_CONFIG.itemLimit){
+      if(r < FEED_CONFIG.item_limit){
         //$scope.itemTL.push([r,true]);
         $scope.itemToggle.itemTL.push(true);
       }else{
@@ -50,7 +63,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
       //First format the date for display
       var displayDate = curItem.date.split('-');
       displayDate = new Date(parseInt(displayDate[0],10),parseInt(displayDate[1],10)-1,parseInt(displayDate[2],10));
-      displayDate = FEED_CONFIG.daysOfWeek[displayDate.getDay()] + " " + ((displayDate.getMonth()+1) + "/" + displayDate.getDate());
+      displayDate = FEED_CONFIG.days_of_week[displayDate.getDay()] + " " + ((displayDate.getMonth()+1) + "/" + displayDate.getDate());
 
       //Now format the start time and end time
       if(curItem.start_time == "00:00:00"){
@@ -72,7 +85,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
         curItem.end_time = formatAMPM(eventDate);
       }
       //Set the date format now that the time has been formatted
-      curItem.date = displayDate;
+      curItem.display_date = displayDate;
 
     }//end for
 
@@ -80,9 +93,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     //Set default sort field to name
     $scope.eventOrder = 'date';
     //Get limit from the config
-    $scope.eventLimit = FEED_CONFIG.itemLimit;
-
-    $scope.slideHeadImg = FEED_CONFIG.slideHeadImg;
+    $scope.eventLimit = FEED_CONFIG.item_limit;
 
     $scope.inRange = function(value){
       $inRange = false;
@@ -124,13 +135,16 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
     }
 
     var iTMove = 0;
-    if(resItems.length > FEED_CONFIG.itemLimit){
+    if(resItems.length > FEED_CONFIG.item_limit){
       //Rotate the items if any need to be hidden
       $interval( function(){
         iTMove = $scope.swapItems($scope.itemToggle);
         setTimeout(function(){moveItem(iTMove);},3000);
-      }, FEED_CONFIG.swapFrequency);
+      }, FEED_CONFIG.swap_frequency);
     }
+
+
+
   }); //END HTTP FOR CCB EVENTS
 
 
@@ -149,7 +163,7 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
            $scope.annIndx = 0;
          }
 
-       },FEED_CONFIG.slideFrequency);
+       },FEED_CONFIG.slide_frequency);
       }
       //Checks for current announcement slider
       $scope.isCurAnn = function(value){
@@ -163,7 +177,11 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','FEE
   //Timeout to refresh the page to get new data
   setTimeout(function(){
     window.location.reload();
-  },FEED_CONFIG.pageRefreshFrequency);
+  },FEED_CONFIG.page_refresh_frequency);
+
+  $scope.eventsLoaded = true;
+
+}); //END feedConfigService Call
 
 }]);
 

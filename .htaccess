@@ -1,0 +1,12 @@
+<Files ".htaccess">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files "ccb-events.conf">
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Disable directory browsing
+Options -Indexes

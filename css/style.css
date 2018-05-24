@@ -5,7 +5,9 @@
 }
 
 body{
-  background-color: #336;
+  background-color: #051f60;
+  /* fixes scrollbar showing when the events rotate */
+  /* overflow: hidden; */
 }
 
 /*Contains the rest of the content*/
@@ -14,13 +16,29 @@ body{
 }
 
 /* Events Title */
-h1{
-  text-align: center;
+h1,h2{
   color: #FFF;
 }
 
 .nopad{
   padding: 0;
+}
+
+.mlr-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eventspage h1{
+  text-align: center;
+}
+
+.announcement-container{
+  padding-left: 3.5em;
+}
+
+.event-container{
+  padding-right: 3.5em;
 }
 
 .even_item{
@@ -39,6 +57,14 @@ h1,h3,h4{
 h1{
   padding-top: 0.8em;
   padding-bottom: 0.8em;
+}
+
+#head-row img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 150px;
 }
 
 .eventinfo{
@@ -74,8 +100,6 @@ img.announcement{
   display: block;
   max-width: 100%;
   max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /*
@@ -100,4 +124,41 @@ img.announcement.ng-hide-add,
 img.announcement.ng-hide-remove.ng-hide-remove-active {
   margin-left: 0;
   opacity: 1;
+}
+
+/*
+* Configuration Form Styles
+*/
+form[name=confForm]{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form label{
+  color: white;
+}
+
+form[name=confForm] .help-block{
+  color: white;
+}
+
+.form-alert{
+  color: #ff8300;
+}
+
+#conf-messages.ng-hide-add,
+#conf-messages.ng-hide-remove {
+  -webkit-transition:all ease-in-out 1s;
+  -moz-transition:all ease-in-out 1s;
+  -o-transition:all ease-in-out 1s;
+  transition:all ease-in-out 1s;
+}
+
+#conf-message.ng-hide-add{
+  opacity: 1;
+}
+
+#conf-messages.ng-hide
+ {
+    opacity : 0;
 }
