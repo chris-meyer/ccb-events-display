@@ -28,6 +28,16 @@ This application was designed to run on an [Apache](https://httpd.apache.org) se
 
 Once you have the web server set up, clone or download the latest version to the Apache web root.
 
+#### A "Gotcha" with cURL
+This application uses cURL to communicate with your CCB instance.  
+If you run the app for the first time and don't see any events show up, it's possible that cURL is to blame.  
+You'll need a file cacert.pem from https://curl.haxx.se/ca/cacert.pem. This file is a set of certificates with authorizes cURL to connect to the outside world.  
+
+Add the following line to php.ini:  
+`curl.cainfo=/path/to/downloaded/cacert.pem`  
+
+Restart Apache and it should be working.
+
 ### Header Image
 You'll want to replace the placeholder image `images/head.jpg` with one branded for your church. It's a 1920x150 pixel image and must be named `head.jpg` in order to work.
 
