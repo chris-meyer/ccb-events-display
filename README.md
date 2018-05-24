@@ -6,10 +6,14 @@ The events are pulled from the [church-wide calendar](https://churchcommunitybui
 Route: /#/list  
 This view shows just a rotating list of the events.
 
+![Image of List View](images/examples/ccb-events-list-view.jpg)
+
 ## Events and Announcements View
 Route: /#/list-with-slides  
 This view shows a rotating list of the events as well as a rotating set of
 announcement slides.
+
+![Image of List with Slides View](images/examples/ccb-events-list-with-slides-view.jpg)
 
 ## Setup
 
