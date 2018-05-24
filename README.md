@@ -24,6 +24,9 @@ This application was designed to run on an [Apache](https://httpd.apache.org) se
 
 Once you have the web server set up, clone or download the latest version to the Apache web root.
 
+### Header Image
+You'll want to replace the placeholder image `images/head.jpg` with one branded for your church. It's a 1920x150 pixel image and must be named `head.jpg` in order to work.
+
 ### Slider images
 Slider images can be png, jpeg, jpg or gif.  
 
