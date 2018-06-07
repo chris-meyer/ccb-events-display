@@ -6,7 +6,9 @@ var confController = angular.module("confController", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-confController.controller("ConfController", ['$scope','$http','feedConfigService', function ($scope, $http, feedConfigService){
+confController.controller("ConfController",
+  function ($scope, $http, $location, feedConfigService){
+  $scope.$location = $location;
   $scope.conf = {};
   $scope.showMessages = false;
 
@@ -90,4 +92,4 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
 
     };
 
-}]);
+});

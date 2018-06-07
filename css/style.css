@@ -29,6 +29,10 @@ h1,h2{
   margin-right: auto;
 }
 
+.vert-clip{
+  overflow-y: hidden;
+}
+
 .eventspage h1{
   text-align: center;
 }
