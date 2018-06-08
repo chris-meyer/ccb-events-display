@@ -33,11 +33,8 @@
   <script src="js/conf_controller.js"></script>
 
 </head>
-<body ng-class="{ 'vert-clip': window.location.hash.indexOf('list') != -1, '': window.location.hash.indexOf('list') == -1 }">
-<p>
-{{ $location.path() }}
-</p>
-
+<!--<body ng-class="{ 'vert-clip': urlPath.indexOf('list') != -1, '': urlPath.indexOf('list') == -1 }">-->
+<body ng-class="{ 'vert-clip': vertClip }">
   <div class="main" ng-view>
 
   </div>

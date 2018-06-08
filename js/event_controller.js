@@ -8,7 +8,10 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 */
 eventControllers.controller("ListController",
   function ($scope, $http, $interval, $location, feedConfigService){
-   $scope.$location = $location;
+   //$scope.vertClip = $location.path();
+   $scope.vertClip = 1;
+   //console.log("urlPath: " + $scope.urlPath );
+
    $scope.eventsLoaded = false;
   //$http.get returns a Promise, so we can use then to determine what to do next
    feedConfigService.getConfig()

@@ -9,6 +9,7 @@ var confController = angular.module("confController", ['ngAnimate']);
 confController.controller("ConfController",
   function ($scope, $http, $location, feedConfigService){
   $scope.$location = $location;
+  $scope.vertClip = 0;
   $scope.conf = {};
   $scope.showMessages = false;
 
