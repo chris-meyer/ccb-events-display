@@ -7,10 +7,10 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (Array) List of name-protected fields to pass, including constructor
 */
 eventControllers.controller("ListController",
-  function ($scope, $http, $interval, $location, feedConfigService){
-   //$scope.vertClip = $location.path();
-   $scope.vertClip = 1;
-   //console.log("urlPath: " + $scope.urlPath );
+  function ($scope, $http, $interval, feedConfigService){
+
+   //Add the class to fix the scrollbar appearing on animations
+   angular.element(document.querySelector('body')).addClass('vert-clip');
 
    $scope.eventsLoaded = false;
   //$http.get returns a Promise, so we can use then to determine what to do next
