@@ -2,7 +2,7 @@ var myApp = angular.module('myApp',[
   'ngRoute',
   'eventControllers',
   'confController'
-])
+]);
 
 myApp.service('feedConfigService', function ($http) {
 

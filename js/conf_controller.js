@@ -6,11 +6,16 @@ var confController = angular.module("confController", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-confController.controller("ConfController", ['$scope','$http','feedConfigService', function ($scope, $http, feedConfigService){
+confController.controller("ConfController",
+  function ($scope, $http, feedConfigService){
+
+  //Remove the class to make the conf page scrollable
+  angular.element(document.querySelector('body')).removeClass('vert-clip');
+
   $scope.conf = {};
   $scope.showMessages = false;
 
- const confMessagesEl = angular.element( document.querySelector( '#conf-messages' ) );
+  const confMessagesEl = angular.element( document.querySelector( '#conf-messages' ) );
 
 
   /*
@@ -90,4 +95,4 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
 
     };
 
-}]);
+});
