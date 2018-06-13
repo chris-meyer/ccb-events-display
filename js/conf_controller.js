@@ -18,8 +18,7 @@ confController.controller("ConfController",
   $scope.conf = {};
   $scope.showMessages = false;
 
-  const confMessagesEl = angular.element( document.querySelector( '#conf-messages' ) );
-
+  const confMessagesEl = angular.element( document.getElementsByClassName("conf-messages") );
 
   /*
   * Displays a message on the page. Message fades away after about 3 seconds

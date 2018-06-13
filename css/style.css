@@ -24,6 +24,10 @@ h1,h2{
   padding: 0;
 }
 
+.nopad-left{
+  padding-left: 0;
+}
+
 .mlr-auto{
   margin-left: auto;
   margin-right: auto;
@@ -136,6 +140,7 @@ img.announcement.ng-hide-remove.ng-hide-remove-active {
 form[name=confForm]{
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 1em;
 }
 
 form label{
@@ -150,19 +155,25 @@ form[name=confForm] .help-block{
   color: #ff8300;
 }
 
-#conf-messages.ng-hide-add,
-#conf-messages.ng-hide-remove {
+.conf-messages.ng-hide-add,
+.conf-messages.ng-hide-remove {
   -webkit-transition:all ease-in-out 1s;
   -moz-transition:all ease-in-out 1s;
   -o-transition:all ease-in-out 1s;
   transition:all ease-in-out 1s;
 }
 
-#conf-message.ng-hide-add{
+.conf-messages.ng-hide-add{
   opacity: 1;
 }
 
-#conf-messages.ng-hide
+.conf-messages.ng-hide
  {
     opacity : 0;
+}
+
+.conf-messages-sm{
+  line-height: 0.5em;
+  height: 2.5em;
+  margin-bottom: 0;
 }
