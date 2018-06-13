@@ -7,7 +7,10 @@ var confController = angular.module("confController", ['ngAnimate']);
 * @param (Array) List of name-protected fields to pass, including constructor
 */
 confController.controller("ConfController",
-  function ($scope, $http, feedConfigService){
+  function ($scope, $http, $location, feedConfigService){
+
+  //Used to create the links on the conf page
+  $scope.baseURL = ('//'+$location.host()+'/#/');
 
   //Remove the class to make the conf page scrollable
   angular.element(document.querySelector('body')).removeClass('vert-clip');
