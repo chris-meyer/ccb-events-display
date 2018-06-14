@@ -7,10 +7,12 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (Array) List of name-protected fields to pass, including constructor
 */
 eventControllers.controller("ListController",
-  function ($scope, $http, $interval, feedConfigService){
+  function ($scope, $http, $interval, $location, feedConfigService){
 
    //Add the class to fix the scrollbar appearing on animations
    angular.element(document.querySelector('body')).addClass('vert-clip');
+
+   let location_path = $location.path();
 
    $scope.eventsLoaded = false;
   //$http.get returns a Promise, so we can use then to determine what to do next
@@ -153,31 +155,34 @@ eventControllers.controller("ListController",
   }); //END HTTP FOR CCB EVENTS
 
 
-  //Slider logic
-  $http.get('php/findimages.php').success(function(data){
-      var imgRes = data;
-      $scope.annIndx = 0;
-      $scope.annList = imgRes;
+ if(location_path.indexOf('slides') !== -1){
+    //Slider logic
+    $http.get('php/findimages.php').success(function(data){
+        var imgRes = data;
+        $scope.annIndx = 0;
+        $scope.annList = imgRes;
 
-      if(imgRes.length > 1){
-       $interval( function(){
-         //Move the image index
-         $scope.annIndx++;
+        if(imgRes.length > 1){
+         $interval( function(){
+           //Move the image index
+           $scope.annIndx++;
 
-         if($scope.annIndx == $scope.annList.length){
-           $scope.annIndx = 0;
-         }
+           if($scope.annIndx == $scope.annList.length){
+             $scope.annIndx = 0;
+           }
 
-       },FEED_CONFIG.slide_frequency);
-      }
-      //Checks for current announcement slider
-      $scope.isCurAnn = function(value){
-        if($scope.annIndx == value){
-          return true;
+         },FEED_CONFIG.slide_frequency);
         }
-        return false;
-      }
-  }); //END HTTP FOR IMAGES
+        //Checks for current announcement slider
+        $scope.isCurAnn = function(value){
+          if($scope.annIndx == value){
+            return true;
+          }
+          return false;
+        }
+    }); //END HTTP FOR IMAGES
+
+  }
 
   //Timeout to refresh the page to get new data
   setTimeout(function(){
