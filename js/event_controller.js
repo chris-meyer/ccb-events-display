@@ -12,7 +12,7 @@ eventControllers.controller("ListController",
    //Add the class to fix the scrollbar appearing on animations
    angular.element(document.querySelector('body')).addClass('vert-clip');
 
-   let location_path = $location.path();
+   const LOCATION_PATH = $location.path();
 
    $scope.eventsLoaded = false;
   //$http.get returns a Promise, so we can use then to determine what to do next
@@ -150,12 +150,14 @@ eventControllers.controller("ListController",
       }, FEED_CONFIG.swap_frequency);
     }
 
-
+    if(LOCATION_PATH.indexOf('slides') === -1){
+      $scope.eventsLoaded = true;
+    }
 
   }); //END HTTP FOR CCB EVENTS
 
 
- if(location_path.indexOf('slides') !== -1){
+ if(LOCATION_PATH.indexOf('slides') !== -1){
     //Slider logic
     $http.get('php/findimages.php').success(function(data){
         var imgRes = data;
@@ -180,6 +182,8 @@ eventControllers.controller("ListController",
           }
           return false;
         }
+        $scope.eventsLoaded = true;
+
     }); //END HTTP FOR IMAGES
 
   }
@@ -188,8 +192,6 @@ eventControllers.controller("ListController",
   setTimeout(function(){
     window.location.reload();
   },FEED_CONFIG.page_refresh_frequency);
-
-  $scope.eventsLoaded = true;
 
 }); //END feedConfigService Call
 
