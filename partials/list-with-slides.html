@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <!-- Slide Section -->
-      <div class="col-xs-7 nopad announcement-container" ng-switch="annIndx" ng-animate="'animate'">
+      <div class="col-xs-7 nopad" id="announcement-container" ng-switch="annIndx" ng-animate="'animate'">
         <img class="announcement" ng-repeat="ann in annList" src="{{ann}}" ng-animate="'animate'" ng-show="isCurAnn({{$index}})" />
       </div>
 

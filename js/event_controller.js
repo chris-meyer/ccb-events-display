@@ -182,6 +182,11 @@ eventControllers.controller("ListController",
           }
           return false;
         }
+
+        let slider_container = document.getElementById("announcement-container");
+        document.onload = positionSlider(slider_container);
+        //window.onresize = positionSlider(slider_container);
+
         $scope.eventsLoaded = true;
 
     }); //END HTTP FOR IMAGES
@@ -220,4 +225,13 @@ function formatAMPM(date) {
   minutes = minutes < 10 ? '0'+minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
+}
+
+function positionSlider(slider_element){
+  //let win_height = screen.availHeight;
+  let win_height = window.innerHeight;
+  let header_height = document.getElementById('head-row').clientHeight;
+  let offset = (win_height - header_height - slider_element.clientHeight) / 2;
+  slider_element.style['margin-top'] = (offset + "px");
+  console.log("positionSlider margin top: "+offset);
 }
