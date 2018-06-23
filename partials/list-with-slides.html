@@ -10,10 +10,10 @@
           <div ng-include src="'partials/head.html'"></div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="content-row">
       <!-- Slide Section -->
       <div class="col-xs-7 nopad" id="announcement-container" ng-switch="annIndx" ng-animate="'animate'">
-        <img class="announcement" ng-repeat="ann in annList" src="{{ann}}" ng-animate="'animate'" ng-show="isCurAnn({{$index}})" />
+        <img class="announcement" ng-repeat="ann in annList" src="{{ann}}" ng-animate="'animate'" ng-show="isCurAnn({{$index}})" ann-slider-directive />
       </div>
 
       <!-- Events Section -->

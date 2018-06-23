@@ -183,8 +183,8 @@ eventControllers.controller("ListController",
           return false;
         }
 
-        let slider_container = document.getElementById("announcement-container");
-        document.onload = positionSlider(slider_container);
+        // let slider_container = document.getElementById("announcement-container");
+        // document.onload = positionSlider(slider_container);
         //window.onresize = positionSlider(slider_container);
 
         $scope.eventsLoaded = true;
@@ -200,6 +200,18 @@ eventControllers.controller("ListController",
 
 }); //END feedConfigService Call
 
+});
+
+eventControllers.directive('annSliderDirective', function() {
+  return function(scope, element, attrs) {
+    //angular.element(element).css('color','blue');
+    if (scope.$first){
+      console.log("I'm the first!");
+      console.log(element);
+      let slider_container = document.getElementById("announcement-container");
+      element.onload = positionSlider(slider_container);
+    }
+  };
 });
 
 function moveItem(ind){
@@ -228,10 +240,11 @@ function formatAMPM(date) {
 }
 
 function positionSlider(slider_element){
-  //let win_height = screen.availHeight;
-  let win_height = window.innerHeight;
-  let header_height = document.getElementById('head-row').clientHeight;
-  let offset = (win_height - header_height - slider_element.clientHeight) / 2;
+  let row_height = document.getElementById('content-row').offsetHeight;
+  console.log("row_height " + row_height );
+  let slider_height = slider_element.offsetHeight;
+  console.log("slider_height " + slider_height );
+  let offset = ( (row_height - slider_height) / 2 );
   slider_element.style['margin-top'] = (offset + "px");
   console.log("positionSlider margin top: "+offset);
 }
