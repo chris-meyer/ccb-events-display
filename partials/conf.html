@@ -9,8 +9,8 @@
     <div class="col-xs-12">
       <div class="col-xs-12">
         <h2>Launch</h2>
-        <a ng-href="/#/list" class="btn btn-default">List-Only</a>
-        <a href="/#/list-with-slides" class="btn btn-default">List with Slides</a>
+        <a ng-href="{{baseURL}}list" class="btn btn-default">List-Only</a>
+        <a ng-href="{{baseURL}}list-with-slides" class="btn btn-default">List with Slides</a>
         <br>
       </div>
 
@@ -23,7 +23,7 @@
       </div>
 
       <div class="col-xs-12">
-        <div id="conf-messages" class="alert col-md-6 col-xs-12" ng-show="showMessages" data-ng-bind="messages" ></div>
+        <div class="alert col-md-6 col-xs-12 conf-messages" ng-show="showMessages" data-ng-bind="messages" ></div>
       </div>
 
       <form name="confForm" class="col-md-6 col-xs-12" novalidate data-ng-submit="submit(this)">
@@ -109,13 +109,15 @@
             <div class="form-alert" ng-show="confForm.slide_img_path.$error.required">Please provide the full slider image path.</div>
           </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-
+        <div class="col-xs-2 nopad-left">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+        <div class="col-xs-8">
+          <div class="alert col-xs-12 conf-messages conf-messages-sm" ng-show="showMessages" data-ng-bind="messages" ></div>
+        </div>
 
       </form>
       </div>
-
-
 
     </div>
   </div>

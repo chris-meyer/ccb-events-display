@@ -16,13 +16,21 @@ $annList = array();
 // Open a known directory, and proceed to read its contents
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
+
+        //Wipe out the contents of the announcements directory for a fresh sync
+        $ann_files = glob($annImgPath.'/*'); // get all announcement files
+        foreach($ann_files as $ann_file){
+          if(is_file($ann_file)){
+            unlink($ann_file); // delete file
+          }
+        }
+
         while (($file = readdir($dh)) !== false) {
-            if(filetype($dir .'/'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/",$file) != FALSE) ){
-              //Check if that image exists in the web announcements folder
-              if(!file_exists($annImgPath.'/'.$file)){
-                //Copy the file into the announcements folder
-                copy( ($dir .'/'. $file), ($annImgPath.'/'.$file) );
-              }
+
+            if(filetype($dir .'/'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/i",$file) != FALSE) ){
+              //Copy the file into the announcements folder
+              copy( ($dir .'/'. $file), ($annImgPath.'/'.$file) );
+
               //Add the image link for this file to the list
               $annList[] = ('images/announcements/'.$file);
             }

@@ -6,8 +6,15 @@ var eventControllers = angular.module("eventControllers", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-eventControllers.controller("ListController", ['$scope','$http','$interval','feedConfigService', function ($scope, $http, $interval, feedConfigService){
-    $scope.eventsLoaded = false;
+eventControllers.controller("ListController",
+  function ($scope, $http, $interval, $location, feedConfigService){
+
+   //Add the class to fix the scrollbar appearing on animations
+   angular.element(document.querySelector('body')).addClass('vert-clip');
+
+   const LOCATION_PATH = $location.path();
+
+   $scope.eventsLoaded = false;
   //$http.get returns a Promise, so we can use then to determine what to do next
    feedConfigService.getConfig()
    .then(
@@ -143,47 +150,53 @@ eventControllers.controller("ListController", ['$scope','$http','$interval','fee
       }, FEED_CONFIG.swap_frequency);
     }
 
-
+    if(LOCATION_PATH.indexOf('slides') === -1){
+      $scope.eventsLoaded = true;
+    }
 
   }); //END HTTP FOR CCB EVENTS
 
 
-  //Slider logic
-  $http.get('php/findimages.php').success(function(data){
-      var imgRes = data;
-      $scope.annIndx = 0;
-      $scope.annList = imgRes;
+ if(LOCATION_PATH.indexOf('slides') !== -1){
+    //Slider logic
+    $http.get('php/findimages.php').success(function(data){
+        var imgRes = data;
+        $scope.annIndx = 0;
+        $scope.annList = imgRes;
 
-      if(imgRes.length > 1){
-       $interval( function(){
-         //Move the image index
-         $scope.annIndx++;
+        if(imgRes.length > 1){
+         $interval( function(){
+           //Move the image index
+           $scope.annIndx++;
 
-         if($scope.annIndx == $scope.annList.length){
-           $scope.annIndx = 0;
-         }
+           if($scope.annIndx == $scope.annList.length){
+             $scope.annIndx = 0;
+           }
 
-       },FEED_CONFIG.slide_frequency);
-      }
-      //Checks for current announcement slider
-      $scope.isCurAnn = function(value){
-        if($scope.annIndx == value){
-          return true;
+         },FEED_CONFIG.slide_frequency);
         }
-        return false;
-      }
-  }); //END HTTP FOR IMAGES
+        //Checks for current announcement slider
+        $scope.isCurAnn = function(value){
+          if($scope.annIndx == value){
+            return true;
+          }
+          return false;
+        }
+        $scope.eventsLoaded = true;
+
+    }); //END HTTP FOR IMAGES
+
+  }
+
 
   //Timeout to refresh the page to get new data
   setTimeout(function(){
     window.location.reload();
   },FEED_CONFIG.page_refresh_frequency);
 
-  $scope.eventsLoaded = true;
-
 }); //END feedConfigService Call
 
-}]);
+});
 
 function moveItem(ind){
   //Get the DOM obj for the event container

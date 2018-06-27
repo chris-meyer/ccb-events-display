@@ -6,12 +6,19 @@ var confController = angular.module("confController", ['ngAnimate']);
 * @param (String) Name of the controller
 * @param (Array) List of name-protected fields to pass, including constructor
 */
-confController.controller("ConfController", ['$scope','$http','feedConfigService', function ($scope, $http, feedConfigService){
+confController.controller("ConfController",
+  function ($scope, $http, $location, feedConfigService){
+
+  //Used to create the links on the conf page
+  $scope.baseURL = ('//'+$location.host()+'/#/');
+
+  //Remove the class to make the conf page scrollable
+  angular.element(document.querySelector('body')).removeClass('vert-clip');
+
   $scope.conf = {};
   $scope.showMessages = false;
 
- const confMessagesEl = angular.element( document.querySelector( '#conf-messages' ) );
-
+  const confMessagesEl = angular.element( document.getElementsByClassName("conf-messages") );
 
   /*
   * Displays a message on the page. Message fades away after about 3 seconds
@@ -89,5 +96,4 @@ confController.controller("ConfController", ['$scope','$http','feedConfigService
       }
 
     };
-
-}]);
+});

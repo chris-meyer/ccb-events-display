@@ -2,7 +2,42 @@ var myApp = angular.module('myApp',[
   'ngRoute',
   'eventControllers',
   'confController'
-])
+]);
+
+myApp.service('feedConfigService', function ($http) {
+
+  this.getConfig = function () {
+    return $http.get('php/get_conf.php');
+  }
+
+/*
+ * Takes in an array of config data and adjusts the values for use
+ * @param config_data
+ * @param convert_type - bit field where 1 = numbers and 10 = arrays
+ * @return The parsed config settings as an associative array
+ */
+  this.parseConfig = function(config_data,convert_type) {
+
+    if ( typeof(convert_type) === 'undefined' ){
+      //Will convert numbers and arrays since 3 = 11 in binary
+      var convert_type = 3;
+    }
+
+    let parsed_conf = angular.copy(config_data);
+    if( (convert_type & 1) == 1){
+      parsed_conf['swap_frequency'] /= 1000; // ms to seconds
+      parsed_conf['slide_frequency'] /= 1000; // ms to seconds
+      parsed_conf['page_refresh_frequency'] /= 60000; // ms to minutes
+    }
+    if( (convert_type & 2) == 2){
+      parsed_conf['days_of_week'] = parsed_conf['days_of_week'].split(',');
+    }
+
+    return parsed_conf;
+
+  }
+
+});
 
 myApp.service('feedConfigService', function ($http) {
 
