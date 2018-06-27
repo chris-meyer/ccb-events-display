@@ -26,10 +26,11 @@ if (is_dir($dir)) {
         }
 
         while (($file = readdir($dh)) !== false) {
+
             if(filetype($dir .'/'. $file) == 'file' && (preg_match("/(\.png|\.jpeg|\.jpg|\.gif)$/i",$file) != FALSE) ){
               //Copy the file into the announcements folder
               copy( ($dir .'/'. $file), ($annImgPath.'/'.$file) );
-              
+
               //Add the image link for this file to the list
               $annList[] = ('images/announcements/'.$file);
             }

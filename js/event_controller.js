@@ -188,6 +188,7 @@ eventControllers.controller("ListController",
 
   }
 
+
   //Timeout to refresh the page to get new data
   setTimeout(function(){
     window.location.reload();

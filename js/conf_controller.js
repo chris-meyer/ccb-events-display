@@ -96,5 +96,4 @@ confController.controller("ConfController",
       }
 
     };
-
 });
