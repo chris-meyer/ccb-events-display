@@ -19,11 +19,11 @@
                 ng-attr-id="{{'event-' + $index}}">
                 <div ng-class-odd="'col-xs-12 eventinfo odd_item'" ng-class-even="'col-xs-12 eventinfo even_item'">
                   <div class="col-xs-6">
-                    <h3>{{item.event_name | uppercase}}</h3>
-                    <h4>{{item.date}} {{item.start_time}} - {{item.end_time}}</h4>
+                    <h2>{{item.event_name | uppercase}}</h2>
+                    <h3>{{item.date}} {{item.start_time}} - {{item.end_time}}</h3>
                   </div>
                   <div class="col-xs-6">
-                  <h4 class="pull-right">{{item.location}}</h4>
+                  <h3 class="pull-right">{{item.location}}</h3>
                   </div>
                 </div>
           </div>
