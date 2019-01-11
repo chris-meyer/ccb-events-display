@@ -57,12 +57,9 @@ h1,h2{
   background-color: #E6E6E6;
 }
 
-h1,h3,h4{
+h1{
   margin-top: 0;
   margin-bottom: 0;
-}
-
-h1{
   padding-top: 0.8em;
   padding-bottom: 0.8em;
 }
@@ -80,7 +77,14 @@ h1{
   padding-bottom: 0.5em;
 }
 
-.eventinfo h4.pull-right{
+.eventinfo h2,
+.eventinfo h3{
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.eventinfo h3.pull-right{
   padding-top: 0.7em;
   text-align: right;
 }
