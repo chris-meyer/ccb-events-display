@@ -80,7 +80,7 @@ eventControllers.controller("ListController",
       else{
         //console.log("start time IS set");
         //Show the date and time as MM/DD HH:MM AM/PM
-        eventDate = new Date(curItem.date + 'T' + curItem.start_time+"-0500");
+        eventDate = new Date(curItem.date + 'T' + curItem.start_time);
         curItem.start_time = formatAMPM(eventDate);
       }
 
@@ -88,7 +88,7 @@ eventControllers.controller("ListController",
         curItem.end_time = "?";
       }
       else{
-        eventDate = new Date(curItem.date + 'T' + curItem.end_time+"-0500");
+        eventDate = new Date(curItem.date + 'T' + curItem.end_time);
         curItem.end_time = formatAMPM(eventDate);
       }
       //Set the date format now that the time has been formatted
